@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Computer;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Computer";
+option java_outer_classname = "ComputerErrorProto";
+
+message AlreadyRegisterComputerPacket {
+}

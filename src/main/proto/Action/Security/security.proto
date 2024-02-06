@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Security;
+
+import "Action/Security/Enum/security_enum.proto";
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Security";
+option java_outer_classname = "ActionSecurityProto";
+
+message EncryptBlockPacket {
+    Enum.EncryptAlgorithmEnum encrypt_algorithm = 1;
+    bytes encrypted = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Security.Enum;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Security.Enum";
+option java_outer_classname = "ActionSecurityEnumProto";
+
+enum EncryptAlgorithmEnum {
+    RSA = 0;
+    AES = 1;
+}
