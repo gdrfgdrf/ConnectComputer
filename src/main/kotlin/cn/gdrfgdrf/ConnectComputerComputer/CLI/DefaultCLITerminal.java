@@ -10,14 +10,14 @@ import java.util.Scanner;
 /**
  * @author gdrfgdrf
  */
-public class DefaultTerminal implements Terminal {
+public class DefaultCLITerminal implements CLITerminal {
     private final Scanner scanner = new Scanner(System.in);
     private final OutputStream outputStream = System.out;
     private String prompt;
 
     private boolean closed = false;
 
-    public DefaultTerminal() {
+    public DefaultCLITerminal() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             closed = true;
             try {

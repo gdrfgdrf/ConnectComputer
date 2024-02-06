@@ -99,7 +99,7 @@ The parameters are verified at run time.
 | password   | String  | None    | Password for logging in to the server                                                                                                                                  |
 | autoLogin  | Boolean | None    | Auto login（Storage account and password）                                                                                                                               |
 | controller | Boolean | None    | true is used as the controller, false is used as the remote device                                                                                                     |
-| silence    | Boolean | false   | Whether to enable the silent mode. This mode is disabled by default. If this mode is enabled, Http login requests are repeatedly sent until they are successfully sent |
+| silent     | Boolean | false   | Whether to enable the silent mode. This mode is disabled by default. If this mode is enabled, Http login requests are repeatedly sent until they are successfully sent |
 
 ### Example
     java --add-opens=java.base/java.lang=ALL-UNNAMED -jar ConnectComputerComputer.jar ssl=true serverIp=1.2.3.4 port=1234 username=Hello password=Password123456 autoLogin=true controller=true

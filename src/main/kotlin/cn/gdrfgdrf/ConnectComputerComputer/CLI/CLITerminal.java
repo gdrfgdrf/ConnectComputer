@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * @author gdrfgdrf
  */
-public interface Terminal {
+public interface CLITerminal {
     void setPrompt(String prompt);
     String readLine() throws IOException, ApplicationClosedException;
     String readLine(String prompt) throws IOException, ApplicationClosedException;
