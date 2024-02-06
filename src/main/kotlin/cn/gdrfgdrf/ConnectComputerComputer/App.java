@@ -6,9 +6,9 @@ import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Annotation.Argument
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.ArgumentValidatorExecutor;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Validator.PortArgumentValidator;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Validator.UsernameArgumentValidator;
-import cn.gdrfgdrf.ConnectComputerComputer.CLI.DefaultTerminal;
+import cn.gdrfgdrf.ConnectComputerComputer.CLI.CLITerminal;
+import cn.gdrfgdrf.ConnectComputerComputer.CLI.DefaultCLITerminal;
 import cn.gdrfgdrf.ConnectComputerComputer.CLI.Exception.ApplicationClosedException;
-import cn.gdrfgdrf.ConnectComputerComputer.CLI.Terminal;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Deserializer.InformationDeserializer;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Information;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.NettyClient;
@@ -92,10 +92,10 @@ public class App {
 
         log.info("Loading terminal...");
 
-        Terminal terminal = new DefaultTerminal();
-        terminal.setPrompt(Constants.PROMPT);
+        CLITerminal CLITerminal = new DefaultCLITerminal();
+        CLITerminal.setPrompt(Constants.PROMPT);
 
-        AppKotlin appKotlin = new AppKotlin(log, dataStore, terminal);
+        AppKotlin appKotlin = new AppKotlin(log, dataStore, CLITerminal);
         appKotlin.enterServerInfo();
         appKotlin.enterAccount(!StringUtils.isBlank(password));
 
@@ -114,7 +114,7 @@ public class App {
 
             while (true) {
                 try {
-                    String line = terminal.readLine(Constants.PROMPT);
+                    String line = CLITerminal.readLine(Constants.PROMPT);
 
                     Menu currentMenu = MenuNavigator.INSTANCE.getCurrentMenu();
                     currentMenu.userInput(line);

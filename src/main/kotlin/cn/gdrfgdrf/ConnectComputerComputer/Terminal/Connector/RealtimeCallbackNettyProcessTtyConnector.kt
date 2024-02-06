@@ -22,7 +22,6 @@ class RealtimeCallbackNettyProcessTtyConnector(
         if (pair == null) {
             return -1
         }
-
         connected = true
 
         val message = pair!!.right as TerminalResponsePacket
@@ -35,10 +34,6 @@ class RealtimeCallbackNettyProcessTtyConnector(
         }
 
         return StringReader(response).read(buf, offset, length)
-    }
-
-    override fun ready(): Boolean {
-        return true
     }
 
 }

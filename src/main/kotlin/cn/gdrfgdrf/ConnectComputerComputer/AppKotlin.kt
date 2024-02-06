@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer
 
-import cn.gdrfgdrf.ConnectComputerComputer.CLI.Terminal
+import cn.gdrfgdrf.ConnectComputerComputer.CLI.CLITerminal
 import cn.gdrfgdrf.ConnectComputerComputer.Common.User.User
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.ParseResult
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request.HttpNetwork
@@ -19,12 +19,11 @@ import kotlinx.coroutines.runBlocking
 import org.apache.commons.lang3.ThreadUtils.sleep
 import org.slf4j.Logger
 import java.time.Duration
-import java.util.concurrent.TimeUnit
 
 /**
  * @author gdrfgdrf
  */
-class AppKotlin(private val log: Logger, private val dataStore: DataStore, private val terminal: Terminal) {
+class AppKotlin(private val log: Logger, private val dataStore: DataStore, private val cliTerminal: CLITerminal) {
     private val coroutine = MainScope()
     val menuHttpNetworkRequest =
         MenuHttpNetworkRequest { method, args ->
@@ -47,7 +46,7 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                 log.info(AppLocale.ENTER_PROTOCOL)
 
                 while (true) {
-                    val protocol = terminal.readLine()
+                    val protocol = cliTerminal.readLine()
                     if ("1" == protocol || "2" == protocol) {
                         serverInfo.sslEnabled = "1" != protocol
                         break
@@ -61,11 +60,11 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                 !NetworkUtils.isValidPort(serverInfo.port)
             ) {
                 log.info(AppLocale.ENTER_SERVER_IP)
-                serverInfo.ip = terminal.readLine()
+                serverInfo.ip = cliTerminal.readLine()
 
                 log.info(AppLocale.ENTER_SERVER_PORT)
                 while (true) {
-                    val portStr = terminal.readLine()
+                    val portStr = cliTerminal.readLine()
 
                     if (NetworkUtils.isValidPort(portStr)) {
                         serverInfo.port = portStr.toInt()
@@ -123,7 +122,7 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                 log.info(AppLocale.ENTER_USERNAME)
 
                 while (true) {
-                    val username = terminal.readLine()
+                    val username = cliTerminal.readLine()
                     if (StringUtils.verifyByPattern(username, Constants.USERNAME_REGEX)) {
                         account.username = username
                         break
@@ -134,7 +133,7 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                 }
 
                 log.info(AppLocale.ENTER_PASSWORD)
-                account.password = terminal.readLine()
+                account.password = cliTerminal.readLine()
                 enterPassword = true
             }
 
@@ -181,7 +180,7 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                     log.info(AppLocale.WANT_TO_ENABLE_AUTO_LOGIN)
 
                     while (true) {
-                        val enable = terminal.readLine()
+                        val enable = cliTerminal.readLine()
                         if ("1" == enable || "2" == enable) {
                             account.autoLogin = "1" == enable
                             log.info(
@@ -203,7 +202,7 @@ class AppKotlin(private val log: Logger, private val dataStore: DataStore, priva
                     log.info(AppLocale.CONTROLLER_OR_BE_CONTROLLED)
 
                     while (true) {
-                        val controller = terminal.readLine()
+                        val controller = cliTerminal.readLine()
                         if ("1" == controller || "2" == controller) {
                             account.controller = "1" == controller
                             break
