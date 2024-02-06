@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Account.Success;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Account";
+option java_outer_classname = "AccountSuccessProto";
+
+message LoginSuccessPacket {
+}

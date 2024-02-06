@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Common;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Common";
+option java_outer_classname = "ExternalErrorProto";
+
+message ForcedOfflinePacket {
+}
+
+message NotFoundUserPacket {
+}
+
+message NotFoundComputerPacket {
+}
+
+message ParameterErrorPacket {
+}
+
+message ConditionNotSatisfiedPacket {
+}
+
+message ClientVersionTooLowPacket {
+
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Base;
+
+import "Common/any.proto";
+
+option java_package = "cn.gdrfgdrf.Protobuf";
+option java_outer_classname = "BaseProto";
+
+message Packet {
+    string client_version = 1;
+    string request_id = 2;
+    int32 code = 3;
+    string message = 4;
+    Common.AnyPacket data = 5;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Common;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Common";
+option java_outer_classname = "AnyPacketProto";
+
+message AnyPacket {
+    string type_url = 1;
+    bytes value = 2;
+}

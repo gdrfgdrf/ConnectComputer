@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Security;
+
+import "Security/Enum/security_enum.proto";
+
+option java_package = "cn.gdrfgdrf.Protobuf.Security";
+option java_outer_classname = "SecurityProto";
+
+message ExchangeRsaPublicKeyPacket {
+    string public_key = 1;
+}
+
+message InitAesKeyPacket {
+    string iv = 1;
+    string key = 2;
+}
+
+message EncryptBlockPacket {
+    EncryptAlgorithmEnum encrypt_algorithm = 1;
+    bytes encrypted = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Connection;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Connection.Goodbye";
+option java_outer_classname = "GoodbyeProto";
+
+message GoodbyePacket {
+}

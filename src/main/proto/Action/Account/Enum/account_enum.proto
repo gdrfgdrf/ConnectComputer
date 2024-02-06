@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Account.Enum;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Account.Enum";
+option java_outer_classname = "AccountEnumProto";
+
+enum LoginModeEnum {
+    CONTROLLER = 0;
+    COMPUTER = 1;
+}

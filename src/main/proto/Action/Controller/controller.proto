@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Controller;
+
+import "Common/enum.proto";
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Controller";
+option java_outer_classname = "ControllerProto";
+
+message ConnectComputerPacket {
+    int32 id = 1;
+}
+
+message ControllerDisconnectedPacket {
+}
+
+message KeyEventPacket {
+    Common.KeyEventType key_event_type = 1;
+    int32 id = 2;
+    int64 when = 3;
+    int32 modifiers = 4;
+    int32 key_code = 5;
+    string key_char = 6;
+    int32 key_location = 7;
+}
+
+message TerminalClosedPacket {
+}

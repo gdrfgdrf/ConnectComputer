@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cn.gdrfgdrf.connectComputer.Protobuf.Action.Computer;
+
+option java_package = "cn.gdrfgdrf.Protobuf.Action.Computer";
+option java_outer_classname = "ComputerProto";
+
+message RegisterComputerPacket {
+    int32 id = 1;
+    string name = 2;
+}
+
+message ComputerDisconnectedPacket {
+}
+
+message ComputerOnlinePacket {
+    int32 id = 1;
+}
+
+message ComputerOfflinePacket {
+    int32 id = 1;
+}
+
+message TerminalResponsePacket {
+    string response = 1;
+}
+
+message TerminalClosedPacket {
+}
