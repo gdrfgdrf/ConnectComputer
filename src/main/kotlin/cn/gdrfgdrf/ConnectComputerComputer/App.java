@@ -92,10 +92,10 @@ public class App {
 
         log.info("Loading terminal...");
 
-        CLITerminal CLITerminal = new DefaultCLITerminal();
-        CLITerminal.setPrompt(Constants.PROMPT);
+        CLITerminal cliTerminal = new DefaultCLITerminal();
+        cliTerminal.setPrompt(Constants.PROMPT);
 
-        AppKotlin appKotlin = new AppKotlin(log, dataStore, CLITerminal);
+        AppKotlin appKotlin = new AppKotlin(log, dataStore, cliTerminal);
         appKotlin.enterServerInfo();
         appKotlin.enterAccount(!StringUtils.isBlank(password));
 
@@ -114,7 +114,7 @@ public class App {
 
             while (true) {
                 try {
-                    String line = CLITerminal.readLine(Constants.PROMPT);
+                    String line = cliTerminal.readLine(Constants.PROMPT);
 
                     Menu currentMenu = MenuNavigator.INSTANCE.getCurrentMenu();
                     currentMenu.userInput(line);
