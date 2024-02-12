@@ -4,8 +4,8 @@ import cn.gdrfgdrf.ConnectComputerServer.Annotation.SecurityParameter;
 import cn.gdrfgdrf.ConnectComputerServer.Exception.IllegalParameterException;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Result;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
-import com.alibaba.fastjson2.JSON;
 import lombok.NonNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -64,15 +64,12 @@ public class EncodeResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             charset = StandardCharsets.UTF_8;
         }
 
-        if (body instanceof Result result) {
-            result.setMessageEnum(null);
-        }
         if (encode) {
             try {
                 if (request.getHeaders().containsKey("publicKey")) {
                     PublicKey publicKey = RSAUtils.getPublicKey(Objects.requireNonNull(request.getHeaders().get("publicKey")).get(0));
 
-                    String resultString = JSON.toJSONString(body);
+                    String resultString = JacksonUtils.writeJsonString(body);
                     resultString = RSAUtils.publicEncrypt(resultString.getBytes(charset), publicKey).toString();
 
                     return resultString;

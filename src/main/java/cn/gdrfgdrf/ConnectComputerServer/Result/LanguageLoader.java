@@ -1,13 +1,13 @@
 package cn.gdrfgdrf.ConnectComputerServer.Result;
 
-import cn.gdrfgdrf.ConnectComputerServer.Utils.FileUtils;
-import com.alibaba.fastjson2.JSONObject;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.Jackson.SuperJsonNode;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.lang.reflect.Field;
-import java.util.Map;
 
 /**
  * @author gdrfgdrf
@@ -16,18 +16,18 @@ public class LanguageLoader {
     public static void main(String[] args) throws Exception {
         Class<? extends MESSAGES> clazz = MESSAGES.class;
         Field[] fields = clazz.getDeclaredFields();
-        JSONObject jsonObject = new JSONObject();
+        ObjectNode jsonNode = JacksonUtils.newTree();
 
         for (Field field : fields) {
-            jsonObject.put(field.getName(), field.get(null));
+            jsonNode.put(field.getName(), field.get(null).toString());
         }
 
-        System.out.println(jsonObject);
+        System.out.println(jsonNode);
     }
 
     public static void load(File file) throws IOException {
-        JSONObject jsonObject = JSONObject.parseObject(FileUtils.getFileContent(file));
-        jsonObject.keySet().forEach(key -> {
+        SuperJsonNode superJsonNode = JacksonUtils.readFileTree(file);
+        superJsonNode.keySet().forEachRemaining(key -> {
             try {
                 Field field = MESSAGES.class.getField(key);
                 boolean access = field.canAccess(null);
@@ -35,7 +35,7 @@ public class LanguageLoader {
                 if (!access) {
                     field.setAccessible(true);
                 }
-                field.set(null, jsonObject.get(key).toString());
+                field.set(null, superJsonNode.getString(key));
 
                 if (!access) {
                     field.setAccessible(false);

@@ -57,7 +57,6 @@ Dependencies
 |------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | [Reflections](https://github.com/ronmamo/reflections)                                                                        | Netty packet query                  |
 | [Lombok](https://github.com/projectlombok/lombok)                                                                            | Code simplification                 |
-| [FASTJSON](https://github.com/alibaba/fastjson2)                                                                             | JSON serialization                  |
 | [Apache Commons IO](https://github.com/apache/commons-io)                                                                    | IO operation                        |
 | [Apache Commons Lang](https://github.com/apache/commons-lang)                                                                | Array, string operation             |
 | [Java JWT](https://github.com/jwtk/jjwt)                                                                                     | Token generation and verification   |

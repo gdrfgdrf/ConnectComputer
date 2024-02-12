@@ -1,8 +1,8 @@
 package cn.gdrfgdrf.ConnectComputerServer.Configuration;
 
 import cn.gdrfgdrf.ConnectComputerServer.Result.Result;
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.support.spring6.data.redis.GenericFastJsonRedisSerializer;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -12,6 +12,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
@@ -32,21 +33,29 @@ public class RedisCacheConfig {
 
     @Bean
     public RedisSerializer<?> redisSerializer() {
-        return new GenericFastJsonRedisSerializer() {
+        return new GenericJackson2JsonRedisSerializer() {
             @Override
-            public byte[] serialize(Object object) throws SerializationException {
-                if (object instanceof Result result) {
-                    String str = JSON.toJSONString(result);
+            public byte[] serialize(Object source) throws SerializationException {
+                if (source instanceof Result result) {
+                    String str;
+                    try {
+                        str = JacksonUtils.writeJsonString(result);
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
                     return str.getBytes(StandardCharsets.UTF_8);
                 }
-
-                return super.serialize(object);
+                return super.serialize(source);
             }
 
             @Override
-            public Object deserialize(byte[] bytes) throws SerializationException {
-                String str = new String(bytes);
-                return JSON.parseObject(str, Result.class);
+            public Object deserialize(byte[] source) throws SerializationException {
+                String str = new String(source);
+                try {
+                    return JacksonUtils.readString(str, Result.class);
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
             }
         };
     }

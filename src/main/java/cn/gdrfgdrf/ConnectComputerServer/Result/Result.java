@@ -3,7 +3,8 @@ package cn.gdrfgdrf.ConnectComputerServer.Result;
 import cn.gdrfgdrf.ConnectComputerServer.Bean.Information.Information;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Deserializer.MessageEnumDeserializer;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Serializer.MessageEnumSerializer;
-import com.alibaba.fastjson2.annotation.JSONField;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -16,7 +17,8 @@ import java.util.Map;
 public class Result {
     private Integer code;
     private String message;
-    @JSONField(serializeUsing = MessageEnumSerializer.class, deserializeUsing = MessageEnumDeserializer.class)
+    @JsonSerialize(using = MessageEnumSerializer.class)
+    @JsonDeserialize(using = MessageEnumDeserializer.class)
     private MessageEnum messageEnum;
     private Map<String, Information> data = new HashMap<>();
 
@@ -28,7 +30,6 @@ public class Result {
     }
 
     public void addData(Information data) {
-        data.setClassName(data.getClass().getSimpleName());
         this.data.put(data.getClass().getSimpleName(), data);
     }
 }

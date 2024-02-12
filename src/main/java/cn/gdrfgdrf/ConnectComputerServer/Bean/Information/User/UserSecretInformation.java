@@ -5,6 +5,7 @@ import cn.gdrfgdrf.ConnectComputerServer.Enum.RSAKeyEnum;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.NettyServer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 /**

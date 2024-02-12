@@ -124,9 +124,6 @@ public enum MessageEnum {
     ERROR_CRYPT,
     UNKNOWN_LANGUAGE;
 
-    @Getter
-    private static final Map<String, MessageEnum> MAP = new ConcurrentHashMap<>();
-
     public static String getMessage(MessageEnum messages) {
         switch (messages) {
             case AVAILABLE_SERVER: return LanguageLoader.MESSAGES.AVAILABLE_SERVER;
@@ -249,9 +246,6 @@ public enum MessageEnum {
 
     @Override
     public String toString() {
-        String message = getMessage(this);
-        MAP.put(message, this);
-
-        return message;
+        return getMessage(this);
     }
 }

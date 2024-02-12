@@ -55,7 +55,6 @@ Netty 服务器带有 RSA 和 AES 加解密，
 |------------------------------------------------------------------------------------------------------------------------------|----------------|
 | [Reflections](https://github.com/ronmamo/reflections)                                                                        | Netty 数据包查询    |
 | [Lombok](https://github.com/projectlombok/lombok)                                                                            | 代码简化           |
-| [FASTJSON](https://github.com/alibaba/fastjson2)                                                                             | JSON 序列化       |
 | [Apache Commons IO](https://github.com/apache/commons-io)                                                                    | IO 操作          |
 | [Apache Commons Lang](https://github.com/apache/commons-lang)                                                                | 数组，字符串操作       |
 | [Java JWT](https://github.com/jwtk/jjwt)                                                                                     | Token 的生成和校验   |

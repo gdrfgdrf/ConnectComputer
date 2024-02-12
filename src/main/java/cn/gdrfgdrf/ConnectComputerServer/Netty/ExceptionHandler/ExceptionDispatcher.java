@@ -7,7 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class ExceptionDispatcher {
     public final Map<Class<? extends Exception>, List<ExceptionHandler>> HANDLER = new HashMap<>();
 
     public void registerExceptionHandler(Class<? extends Exception> type, ExceptionHandler handler) {
-        HANDLER.computeIfAbsent(type, k -> new LinkedList<>());
+        HANDLER.computeIfAbsent(type, k -> new ArrayList<>());
         HANDLER.get(type).add(handler);
     }
 

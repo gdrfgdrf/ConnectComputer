@@ -13,7 +13,7 @@ import lombok.Data;
 import org.apache.ibatis.type.EnumTypeHandler;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,7 +55,7 @@ public class UserEntity implements Serializable {
     @OneToMany
     @JoinColumn(name = "id", referencedColumnName = "userId")
     @Lazy(value = false)
-    private List<TokenEntity> tokenEntities = new LinkedList<>();
+    private List<TokenEntity> tokenEntities = new ArrayList<>();
 
     public boolean containsToken(String token) {
         return tokenEntities.stream().anyMatch(tokenEntity -> tokenEntity.getContent().equals(token));

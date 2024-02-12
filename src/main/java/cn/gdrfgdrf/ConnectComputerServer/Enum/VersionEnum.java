@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerServer.Enum;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public enum VersionEnum {
 
     private void init() {
         if (versions == null) {
-            versions = new LinkedList<>();
+            versions = new ArrayList<>();
         }
 
         versions.add(this);

@@ -91,7 +91,7 @@ public class NettyServer {
 
     public void addControllerUser(ControllerUser controllerUser) {
         Integer id = controllerUser.getId();
-        LOGIN_CONTROLLER_USER.computeIfAbsent(id, k -> new LinkedList<>());
+        LOGIN_CONTROLLER_USER.computeIfAbsent(id, k -> new ArrayList<>());
         LOGIN_CONTROLLER_USER.get(id).add(controllerUser);
     }
 
@@ -130,7 +130,7 @@ public class NettyServer {
 
     public void addComputerUser(ComputerUser computerUser) {
         Integer id = computerUser.getId();
-        LOGIN_COMPUTER_USER.computeIfAbsent(id, k -> new LinkedList<>());
+        LOGIN_COMPUTER_USER.computeIfAbsent(id, k -> new ArrayList<>());
         LOGIN_COMPUTER_USER.get(id).add(computerUser);
     }
 

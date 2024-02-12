@@ -10,4 +10,8 @@ public class Information {
     @Setter
     @Getter
     private String className;
+
+    protected Information() {
+        className = getClass().getSimpleName();
+    }
 }

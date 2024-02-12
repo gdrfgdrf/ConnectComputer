@@ -4,7 +4,7 @@ import cn.gdrfgdrf.ConnectComputerServer.Bean.Information.Information;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,5 +13,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ErrorInformation extends Information {
-    private List<String> errorMessage = new LinkedList<>();
+    private List<String> errorMessage = new ArrayList<>();
 }

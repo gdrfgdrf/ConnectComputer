@@ -7,16 +7,12 @@ import cn.gdrfgdrf.ConnectComputerServer.Enum.RSAKeyEnum;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.Annotation.Handler;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.Base.PacketHandler;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.NettyServer;
-import cn.gdrfgdrf.ConnectComputerServer.Result.Deserializer.InformationDeserializer;
-import cn.gdrfgdrf.ConnectComputerServer.Result.Deserializer.MessageEnumDeserializer;
 import cn.gdrfgdrf.ConnectComputerServer.Result.LanguageLoader;
 import cn.gdrfgdrf.ConnectComputerServer.Result.MessageEnum;
-import cn.gdrfgdrf.ConnectComputerServer.Result.Serializer.MessageEnumSerializer;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.FileUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.TokenUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Validation.Base.BaseValidator;
-import com.alibaba.fastjson2.JSON;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +36,7 @@ import java.lang.reflect.Method;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,14 +47,11 @@ import java.util.Map;
 @EnableAsync
 @EnableScheduling
 @MapperScan(basePackages = "cn.gdrfgdrf.ConnectComputerServer.Mapper")
-@SpringBootApplication(exclude = {JacksonAutoConfiguration.class})
+//@SpringBootApplication(exclude = {JacksonAutoConfiguration.class})
+@SpringBootApplication
 public class App {
     public static void main(String[] args) throws Exception {
         init();
-
-        JSON.register(MessageEnum.class, MessageEnumSerializer.INSTANCE);
-        JSON.register(MessageEnum.class, MessageEnumDeserializer.INSTANCE);
-        JSON.register(Information.class, InformationDeserializer.INSTANCE);
 
         initInformation();
 

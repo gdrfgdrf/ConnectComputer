@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ import java.util.List;
 public class ComputerListInformation extends Information {
     @Setter
     @Getter
-    private List<ComputerInformation> list = new LinkedList<>();
+    private List<ComputerInformation> list = new ArrayList<>();
 
     public static ComputerListInformation createByComputerList(List<ComputerEntity> computerEntities) {
         ComputerListInformation computerListInformation = new ComputerListInformation();

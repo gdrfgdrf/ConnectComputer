@@ -7,10 +7,11 @@ import cn.gdrfgdrf.ConnectComputerServer.Exception.IllegalParameterException;
 import cn.gdrfgdrf.ConnectComputerServer.Enum.RSAKeyEnum;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
 import cn.gdrfgdrf.ConnectComputerServer.Service.Database.IUserEntityService;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.Jackson.SuperJsonNode;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.StringUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.TokenUtils;
-import com.alibaba.fastjson2.JSONObject;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.NonNull;
 import org.apache.commons.io.IOUtils;
@@ -123,9 +124,9 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private UserEntity body2User(String body)
             throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, IOException, InvalidKeyException {
-        JSONObject jsonObject = JSONObject.parseObject(body);
+        SuperJsonNode jsonNode = JacksonUtils.readStringTree(body);
 
-        String id = jsonObject.getString("id");
+        String id = jsonNode.getStringOrNull("id");
         if (id != null) {
             if (!StringUtils.verifyInteger(id)) {
                 throw new IllegalParameterException(
@@ -134,7 +135,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             }
         }
 
-        String password = jsonObject.getString("password");
+        String password = jsonNode.getStringOrNull("password");
         if (password != null) {
             password = RSAUtils.privateDecrypt(
                     password,
@@ -142,7 +143,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             ).toString();
         }
 
-        String displayName = jsonObject.getString("displayName");
+        String displayName = jsonNode.getStringOrNull("displayName");
 
         UserEntity user = new UserEntity();
         user.setId(id != null ? Integer.parseInt(id) : null);
@@ -154,9 +155,9 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private UserWithChangePasswordEntity body2UserWithChangePassword(String body)
             throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, IOException, InvalidKeyException {
-        JSONObject jsonObject = JSONObject.parseObject(body);
+        SuperJsonNode jsonNode = JacksonUtils.readStringTree(body);
 
-        String originalPassword = jsonObject.getString("originalPassword");
+        String originalPassword = jsonNode.getStringOrNull("originalPassword");
         if (originalPassword != null) {
             originalPassword = RSAUtils.privateDecrypt(
                     originalPassword,
@@ -164,7 +165,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             ).toString();
         }
 
-        String id = jsonObject.getString("id");
+        String id = jsonNode.getStringOrNull("id");
         if (id != null) {
             if (!StringUtils.verifyInteger(id)) {
                 throw new IllegalParameterException(
@@ -173,7 +174,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             }
         }
 
-        String password = jsonObject.getString("password");
+        String password = jsonNode.getStringOrNull("password");
         if (password != null) {
             password = RSAUtils.privateDecrypt(
                     password,
@@ -192,12 +193,12 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     private UserWithMultipartFileEntity request2UserWithMultipartFile(HttpServletRequest request) throws Exception {
         String jsonStr = request.getParameterValues("json")[0];
         jsonStr = RSAUtils.privateDecrypt(jsonStr, RSAKeyEnum.HTTP_KEY.getPrivateKey()).toString();
-        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        SuperJsonNode jsonNode = JacksonUtils.readStringTree(jsonStr);
 
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = multipartHttpServletRequest.getFile("file");
 
-        String id = jsonObject.getString("id");
+        String id = jsonNode.getStringOrNull("id");
         if (id != null) {
             if (!StringUtils.verifyInteger(id)) {
                 throw new IllegalParameterException(

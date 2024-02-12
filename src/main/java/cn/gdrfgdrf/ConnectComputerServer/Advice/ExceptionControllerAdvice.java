@@ -4,8 +4,8 @@ import cn.gdrfgdrf.ConnectComputerServer.Bean.Information.Common.ErrorInformatio
 import cn.gdrfgdrf.ConnectComputerServer.Exception.IllegalParameterException;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Result;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
-import com.alibaba.fastjson2.JSON;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -156,7 +156,7 @@ public class ExceptionControllerAdvice {
     private Object encryptData(HttpServletRequest httpServletRequest, Result result) throws Exception {
         String publicKeyStr = httpServletRequest.getHeader("publicKey");
         if (publicKeyStr != null) {
-            String resultStr = JSON.toJSONString(result);
+            String resultStr = JacksonUtils.writeJsonString(result);
             PublicKey publicKey = RSAUtils.getPublicKey(publicKeyStr);
             resultStr = RSAUtils.publicEncrypt(resultStr, publicKey).toString();
 
