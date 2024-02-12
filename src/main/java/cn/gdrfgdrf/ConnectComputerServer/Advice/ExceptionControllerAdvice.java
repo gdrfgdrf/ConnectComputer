@@ -4,12 +4,14 @@ import cn.gdrfgdrf.ConnectComputerServer.Bean.Information.Common.ErrorInformatio
 import cn.gdrfgdrf.ConnectComputerServer.Exception.IllegalParameterException;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Result;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.CharsetUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -156,9 +160,11 @@ public class ExceptionControllerAdvice {
     private Object encryptData(HttpServletRequest httpServletRequest, Result result) throws Exception {
         String publicKeyStr = httpServletRequest.getHeader("publicKey");
         if (publicKeyStr != null) {
+            Charset charset = CharsetUtils.getRequestCharsetOrDefault(httpServletRequest, StandardCharsets.UTF_8);
+
             String resultStr = JacksonUtils.writeJsonString(result);
             PublicKey publicKey = RSAUtils.getPublicKey(publicKeyStr);
-            resultStr = RSAUtils.publicEncrypt(resultStr, publicKey).toString();
+            resultStr = RSAUtils.publicEncrypt(resultStr.getBytes(charset), publicKey).toString();
 
             return resultStr;
         } else {

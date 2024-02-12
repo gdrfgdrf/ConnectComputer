@@ -4,6 +4,7 @@ import cn.gdrfgdrf.ConnectComputerServer.Annotation.SecurityParameter;
 import cn.gdrfgdrf.ConnectComputerServer.Exception.IllegalParameterException;
 import cn.gdrfgdrf.ConnectComputerServer.Result.Result;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
+import cn.gdrfgdrf.ConnectComputerServer.Utils.CharsetUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerServer.Utils.RSAUtils;
 import lombok.NonNull;
@@ -50,19 +51,9 @@ public class EncodeResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             }
         }
 
-        Charset charset;
-        try {
-            MediaType requsetMediaType = request.getHeaders().getContentType();
-            charset = requsetMediaType != null ? requsetMediaType.getCharset() : StandardCharsets.UTF_8;
-            if (charset == null) {
-                charset = StandardCharsets.UTF_8;
-            }
-
-            MediaType responseMediaType = MediaType.parseMediaType("application/json; charset=" + charset.name());
-            response.getHeaders().setContentType(responseMediaType);
-        } catch (Exception ignored) {
-            charset = StandardCharsets.UTF_8;
-        }
+        Charset charset = CharsetUtils.getRequestCharsetOrDefault(request, StandardCharsets.UTF_8);
+        MediaType responseMediaType = MediaType.parseMediaType("application/json; charset=" + charset.name());
+        response.getHeaders().setContentType(responseMediaType);
 
         if (encode) {
             try {
