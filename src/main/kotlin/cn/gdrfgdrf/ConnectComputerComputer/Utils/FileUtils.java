@@ -9,18 +9,6 @@ import java.nio.charset.StandardCharsets;
 public class FileUtils {
     private FileUtils() {}
 
-    public static String getFileContent(File file) throws IOException {
-        BufferedReader reader = (BufferedReader) getReader(file);
-
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-        }
-
-        return stringBuilder.toString();
-    }
-
     public static Reader getReader(File file) throws IOException {
         return new BufferedReader(
                 new InputStreamReader(

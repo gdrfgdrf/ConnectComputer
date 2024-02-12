@@ -6,8 +6,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Interceptor.DataStoreCreateOnGetIfNot
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanUseMethodInterceptor;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.FileUtils;
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONWriter;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -38,7 +37,7 @@ public class DataStore implements Bean {
         }
 
         Writer writer = FileUtils.getWriter(clazzNameFile);
-        String json = JSON.toJSONString(dataBean, JSONWriter.Feature.WriteMapNullValue);
+        String json = JacksonUtils.writeJsonString(dataBean);
 
         writer.write(json);
         writer.close();
@@ -53,13 +52,12 @@ public class DataStore implements Bean {
             fieldClassNameFile.createNewFile();
 
             Writer writer = FileUtils.getWriter(fieldClassNameFile);
-            String json = JSON.toJSONString(field.get(this), JSONWriter.Feature.WriteMapNullValue);
+            String json = JacksonUtils.writeJsonString(field.get(this));
 
             writer.write(json);
             writer.close();
         } else {
-            String content = FileUtils.getFileContent(fieldClassNameFile);
-            Object obj = JSON.parseObject(content, field.getType());
+            Object obj = JacksonUtils.readFile(fieldClassNameFile, field.getType());
 
             field.set(this, obj);
         }

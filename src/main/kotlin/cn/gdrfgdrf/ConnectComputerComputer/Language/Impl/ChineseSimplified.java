@@ -88,7 +88,6 @@ public class ChineseSimplified extends Language {
     public static final String FALSE = "否";
     public static final String INDEX = "索引";
 
-    public static final String HTTP_ERROR = "错误：\n{}";
     public static final String INTEGER_POSITIVE_ERROR = "必须是正数";
 
     public static final String ENTER_ERROR = "输入错误，请重新输入";
@@ -108,8 +107,6 @@ public class ChineseSimplified extends Language {
     public static final String CUSTOM_EXCEPTION_ARGUMENT_ASSIGNOR_EXECUTE = "参数赋值器出现异常";
     public static final String CUSTOM_EXCEPTION_ARGUMENT_VALIDATOR_EXECUTE = "参数验证器出现异常";
 
-    public static final String CUSTOM_EXCEPTION_JSON_NULL = "服务器没有返回";
-    public static final String CUSTOM_EXCEPTION_NOT_A_JSON_OBJECT = "服务器返回了非法字符串";
     public static final String CUSTOM_EXCEPTION_PARSE = "解析失败";
 
     public static final String NOT_NULL = "参数不能为空";

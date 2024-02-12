@@ -117,22 +117,24 @@ JVM 运行参数
 依赖
 -------------------------
 
-| 依赖名                                                                     | 在本软件中的用途           |
-|-------------------------------------------------------------------------|--------------------|
-| [Reflections](https://github.com/ronmamo/reflections)                   | Netty 数据包查询        |
-| [Hutool](https://github.com/dromara/hutool)                             | 异步执行               |
-| [Okhttp](https://github.com/square/okhttp)                              | Http               |
-| [Pty4J](https://github.com/JetBrains/pty4j)                             | 模拟终端               |
-| [JediTerm](https://github.com/JetBrains/jediterm)                       | 模拟终端               |
-| [Lombok](https://github.com/projectlombok/lombok)                       | 代码简化               |
-| [Apache Commons Lang](https://github.com/apache/commons-lang)           | Pair、字符操作          |
-| [Protocol Buffers](https://github.com/protocolbuffers/protobuf)         | Netty 数据包          |
-| [Netty](https://github.com/netty/netty)                                 | 长连接通讯              |
-| [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)       | Http 协程异步          |
-| [Kotlin Coroutines Jvm](https://github.com/Kotlin/kotlinx.coroutines)   | Kotlin 协程的 Java 支持 |
-| [Kotlin Stdlib Jdk8](https://github.com/JetBrains/kotlin)               | Kotlin 标准库         |
-| [SLF4J](https://github.com/qos-ch/slf4j)                                | 日志框架               |
-| [Logback](https://github.com/qos-ch/logback)                            | 日志框架 SLF4J 的实现     |
+| 依赖名                                                                   | 在本软件中的用途           |
+|-----------------------------------------------------------------------|--------------------|
+| [Reflections](https://github.com/ronmamo/reflections)                 | Netty 数据包查询        |
+| [Hutool](https://github.com/dromara/hutool)                           | 异步执行               |
+| [Okhttp](https://github.com/square/okhttp)                            | Http               |
+| [Pty4J](https://github.com/JetBrains/pty4j)                           | 模拟终端               |
+| [JediTerm](https://github.com/JetBrains/jediterm)                     | 模拟终端               |
+| [Lombok](https://github.com/projectlombok/lombok)                     | 代码简化               |
+| [Jackson Core](https://github.com/FasterXML/jackson-core)             | Json 序列化核心         |
+| [Jackson Databind](https://github.com/FasterXML/jackson-databind)     | Json 序列化数据绑定       |
+| [Apache Commons Lang](https://github.com/apache/commons-lang)         | Pair、字符操作          |
+| [Protocol Buffers](https://github.com/protocolbuffers/protobuf)       | Netty 数据包          |
+| [Netty](https://github.com/netty/netty)                               | 长连接通讯              |
+| [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)     | Http 协程异步          |
+| [Kotlin Coroutines Jvm](https://github.com/Kotlin/kotlinx.coroutines) | Kotlin 协程的 Java 支持 |
+| [Kotlin Stdlib Jdk8](https://github.com/JetBrains/kotlin)             | Kotlin 标准库         |
+| [SLF4J](https://github.com/qos-ch/slf4j)                              | 日志框架               |
+| [Logback](https://github.com/qos-ch/logback)                          | 日志框架 SLF4J 的实现     |
 
 ### 直接复制进项目的依赖
 

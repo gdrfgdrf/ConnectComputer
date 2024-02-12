@@ -1,7 +1,7 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request
 
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Extension.executeAsync
-import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request.Json.JSONObjectBuilder
+import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request.Json.ObjectNodeBuilder
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.URL.URLEnum
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.HttpUtils
 import okhttp3.MediaType
@@ -34,15 +34,15 @@ inline fun <T> NetworkRequest(
 val MEDIA_TYPE_JSON: MediaType = "application/json; charset=${Charset.defaultCharset().name()}".toMediaType()
 fun Request.Builder.jsonBody(
     method: String = "post",
-    builder: JSONObjectBuilder.() -> Unit
+    builder: ObjectNodeBuilder.() -> Unit
 ) = method(
     method,
-    buildJSONObject(builder)
+    buildObjectNode(builder)
         .toRequestBody(MEDIA_TYPE_JSON)
 )
 
-fun buildJSONObject(buildAction: JSONObjectBuilder.() -> Unit): String {
-    val builder = JSONObjectBuilder()
+fun buildObjectNode(buildAction: ObjectNodeBuilder.() -> Unit): String {
+    val builder = ObjectNodeBuilder()
     builder.buildAction()
     return builder.build()
 }

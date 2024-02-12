@@ -139,6 +139,8 @@ Dependencies
 | [Pty4J](https://github.com/JetBrains/pty4j)                           | Pseudo terminal                           |
 | [JediTerm](https://github.com/JetBrains/jediterm)                     | Pseudo terminal                           |
 | [Lombok](https://github.com/projectlombok/lombok)                     | Code simplification                       |
+| [Jackson Core](https://github.com/FasterXML/jackson-core)             | Json Serialization core                   |
+| [Jackson Databind](https://github.com/FasterXML/jackson-databind)     | Json data binding                         |
 | [Apache Commons Lang](https://github.com/apache/commons-lang)         | Pair, character operation                 |
 | [Protocol Buffers](https://github.com/protocolbuffers/protobuf)       | Netty packet                              |
 | [Netty](https://github.com/netty/netty)                               | Long connection                           |

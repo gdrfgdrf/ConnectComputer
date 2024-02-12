@@ -1,11 +1,9 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Parser
 
-import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Parser.Exception.JsonNullException
-import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Parser.Exception.NotAJsonObjectException
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Parser.Exception.ParseException
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.ParseResult
-import com.alibaba.fastjson2.JSON
-import com.alibaba.fastjson2.JSONObject
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.Jackson.SuperJsonNode
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils
 import okhttp3.ResponseBody
 import okio.BufferedSource
 import java.nio.charset.Charset
@@ -19,9 +17,9 @@ abstract class BaseParser<T> {
         return try {
             val body = responseBodyToString(responseBody)
 
-            val rawJson = JSONObject.parseObject(body)
+            val rawJson = JacksonUtils.readStringTree(body)
 
-            val parseResult = JSON.parseObject(rawJson.toString(), ParseResult::class.java)
+            val parseResult = JacksonUtils.readString<ParseResult>(body, ParseResult::class.java)
             parseResult.rawJson = rawJson
 
             parseResult

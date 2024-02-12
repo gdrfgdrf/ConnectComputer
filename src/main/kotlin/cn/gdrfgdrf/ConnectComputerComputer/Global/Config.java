@@ -2,7 +2,7 @@ package cn.gdrfgdrf.ConnectComputerComputer.Global;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.FileUtils;
-import com.alibaba.fastjson2.JSON;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +24,7 @@ public class Config implements Bean {
         if (!file.exists()) {
             log.info("No config.json file found, start writing");
 
-            String json = JSON.toJSONString(this);
+            String json = JacksonUtils.writeJsonString(this);
 
             Writer writer = FileUtils.getWriter(file);
             writer.write(json);
@@ -34,8 +34,7 @@ public class Config implements Bean {
         } else {
             log.info("Start loading the config.json file");
 
-            String content = FileUtils.getFileContent(file);
-            Config newInstance = JSON.parseObject(content, Config.class);
+            Config newInstance = JacksonUtils.readFile(file, Config.class);
 
             this.locale = newInstance.getLocale();
 

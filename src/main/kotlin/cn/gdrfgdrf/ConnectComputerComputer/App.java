@@ -17,7 +17,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.RSA;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.ServerInfo;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Deserializer.RSADeserializer;
-import cn.gdrfgdrf.ConnectComputerComputer.Data.Deserializer.RSASerializer;
+import cn.gdrfgdrf.ConnectComputerComputer.Data.Serializer.RSASerializer;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
@@ -27,7 +27,6 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.BeanManager;
 import cn.gdrfgdrf.ConnectComputerComputer.Thread.ThreadPoolService;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.AppUtils;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.StringUtils;
-import com.alibaba.fastjson2.JSON;
 import io.netty.util.internal.logging.InternalLoggerFactory;
 import io.netty.util.internal.logging.JdkLoggerFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -68,9 +67,6 @@ public class App {
 
     private void run(String[] args) throws Exception {
         InternalLoggerFactory.setDefaultFactory(JdkLoggerFactory.INSTANCE);
-        JSON.register(RSA.class, RSASerializer.INSTANCE);
-        JSON.register(RSA.class, RSADeserializer.INSTANCE);
-        JSON.register(Information.class, InformationDeserializer.INSTANCE);
 
         BeanManager beanManager = BeanManager.getInstance();
         beanManager.init();

@@ -15,6 +15,9 @@ class RealtimeCallbackPtyProcessTtyConnector(
     override fun read(buf: CharArray, offset: Int, length: Int): Int {
         val result = super.read(buf, offset, length)
         callback?.let {
+            if (offset > result) {
+                return@let
+            }
             val len = buf.copyOfRange(offset, result)
             callback.response(len)
         }

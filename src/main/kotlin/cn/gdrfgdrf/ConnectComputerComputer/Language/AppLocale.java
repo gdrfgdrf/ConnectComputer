@@ -87,7 +87,6 @@ public class AppLocale extends Locale {
     public static String FALSE;
     public static String INDEX;
 
-    public static String HTTP_ERROR;
     public static String INTEGER_POSITIVE_ERROR;
 
     public static String ENTER_ERROR;
@@ -107,8 +106,6 @@ public class AppLocale extends Locale {
     public static String CUSTOM_EXCEPTION_ARGUMENT_ASSIGNOR_EXECUTE;
     public static String CUSTOM_EXCEPTION_ARGUMENT_VALIDATOR_EXECUTE;
 
-    public static String CUSTOM_EXCEPTION_JSON_NULL;
-    public static String CUSTOM_EXCEPTION_NOT_A_JSON_OBJECT;
     public static String CUSTOM_EXCEPTION_PARSE;
 
     public static String NOT_NULL;

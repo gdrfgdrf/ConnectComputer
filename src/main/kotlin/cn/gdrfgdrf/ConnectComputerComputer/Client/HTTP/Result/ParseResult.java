@@ -2,9 +2,11 @@ package cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Information;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.annotation.JSONField;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.Jackson.SuperJsonNode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.ToString;
 
 import java.util.HashMap;
@@ -14,16 +16,17 @@ import java.util.Map;
  * @author gdrfgdrf
  */
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ParseResult {
-    @JSONField(serialize = false, deserialize = false)
+    @JsonIgnore
     private Boolean success;
 
     private Integer code;
     private String message;
     private Map<String, Information> data = new HashMap<>();
 
-    @JSONField(serialize = false, deserialize = false)
-    private JSONObject rawJson;
+    @JsonIgnore
+    private SuperJsonNode rawJson;
 
     public Boolean getSuccess() {
         return code == Constants.SUCCESS;
@@ -61,11 +64,11 @@ public class ParseResult {
         return (T) data.get(clazz.getSimpleName());
     }
 
-    public JSONObject getRawJson() {
+    public SuperJsonNode getRawJson() {
         return rawJson;
     }
 
-    public void setRawJson(JSONObject rawJson) {
+    public void setRawJson(SuperJsonNode rawJson) {
         this.rawJson = rawJson;
     }
 }

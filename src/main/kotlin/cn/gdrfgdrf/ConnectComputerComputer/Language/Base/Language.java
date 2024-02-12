@@ -1,7 +1,8 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Language.Base;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.FileUtils;
-import com.alibaba.fastjson2.JSONObject;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.lang.reflect.Field;
  */
 public abstract class Language {
     public static void writeTo(Class<? extends Language> clazz, File file) throws IOException {
-        JSONObject jsonObject = new JSONObject();
+        ObjectNode objectNode = JacksonUtils.newTree();
         Field[] fields = clazz.getFields();
 
         for (Field field : fields) {
@@ -22,7 +23,7 @@ public abstract class Language {
                     String name = field.getName();
                     String content = (String) field.get(null);
 
-                    jsonObject.put(name, content);
+                    objectNode.put(name, content);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -30,7 +31,7 @@ public abstract class Language {
         }
 
         Writer writer = FileUtils.getWriter(file);
-        writer.write(jsonObject.toString());
+        writer.write(objectNode.toString());
         writer.close();
     }
 }

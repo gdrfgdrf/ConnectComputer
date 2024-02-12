@@ -8,7 +8,9 @@ import cn.gdrfgdrf.ConnectComputerComputer.Language.Impl.ChineseSimplified;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.BeanManager;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.FileUtils;
-import com.alibaba.fastjson2.JSONObject;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.Jackson.SuperJsonNode;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -53,11 +55,10 @@ public class LocaleLoader implements Bean {
             file = defaultLanguageFile;
         }
 
-        String text = FileUtils.getFileContent(file);
-        JSONObject jsonObject = JSONObject.parseObject(text);
+        SuperJsonNode jsonNode = JacksonUtils.readFileTree(file);
 
         for (Field field : fields) {
-            String value = jsonObject.getString(field.getName());
+            String value = jsonNode.getStringOrNull(field.getName());
             field.set(null, value);
         }
 

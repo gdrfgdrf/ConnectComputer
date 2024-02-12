@@ -1,42 +1,50 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Data.Deserializer;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.RSA;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.Jackson.SuperJsonNode;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.RSAUtils;
-import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONReader;
-import com.alibaba.fastjson2.reader.ObjectReader;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.StringUtils;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
  * @author gdrfgdrf
  */
-public class RSADeserializer implements ObjectReader<RSA> {
+public class RSADeserializer extends JsonDeserializer<RSA> {
     public static final RSADeserializer INSTANCE = new RSADeserializer();
 
     @Override
-    public RSA readObject(JSONReader jsonReader, long features) {
-        if (jsonReader.nextIfNull()) {
+    public RSA deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
+        ObjectCodec codec = jsonParser.getCodec();
+        TreeNode treeNode = codec.readTree(jsonParser);
+        String json = treeNode.toString();
+        if (StringUtils.isBlank(json)) {
             return null;
         }
 
-        String str = jsonReader.readString();
         RSA rsa = new RSA();
-
         try {
-            JSONObject jsonObject = JSONObject.parseObject(str);
+            SuperJsonNode jsonNode = JacksonUtils.readStringTree(json);
 
-            String privateKey = jsonObject.getString("privateKey");
+            String privateKey = jsonNode.getString("privateKey");
             rsa.setPrivateKey(convertStringToPrivateKey(privateKey));
 
-            String publicKey = jsonObject.getString("publicKey");
+            String publicKey = jsonNode.getString("publicKey");
             rsa.setPublicKey(convertStringToPublicKey(publicKey));
 
-            String nettyPrivateKey = jsonObject.getString("nettyPrivateKey");
+            String nettyPrivateKey = jsonNode.getString("nettyPrivateKey");
             rsa.setNettyPrivateKey(convertStringToPrivateKey(nettyPrivateKey));
 
-            String nettyPublicKey = jsonObject.getString("nettyPublicKey");
+            String nettyPublicKey = jsonNode.getString("nettyPublicKey");
             rsa.setNettyPublicKey(convertStringToPublicKey(nettyPublicKey));
 
             return rsa;
