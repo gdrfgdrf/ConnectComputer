@@ -18,6 +18,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * @author gdrfgdrf
+ */
 @Slf4j
 public abstract class Terminal {
     private final boolean windowVisible;
@@ -122,7 +125,7 @@ public abstract class Terminal {
     private final TerminalWidgetListener listener = terminalWidget -> {
         if (jediTermWidget != null) {
             try {
-                jediTermWidget.close(); // terminate the current process and dispose all allocated resources
+                jediTermWidget.close();
             } catch (Exception ignored) {
             }
         }
