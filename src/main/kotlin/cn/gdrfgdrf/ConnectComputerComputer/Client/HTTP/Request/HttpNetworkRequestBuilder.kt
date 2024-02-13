@@ -1,15 +1,17 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request
 
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Extension.executeAsync
+import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Interceptor.PrepareAndCallRequestInterceptor
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Request.Json.ObjectNodeBuilder
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.URL.URLEnum
-import cn.gdrfgdrf.ConnectComputerComputer.Utils.HttpUtils
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.nio.charset.Charset
+import java.util.concurrent.TimeUnit
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -52,7 +54,14 @@ suspend inline fun <R> Request.execute(block: Response.() -> R): R {
     contract {
         callsInPlace(block, InvocationKind.EXACTLY_ONCE)
     }
-    return HttpUtils.OK_HTTP_CLIENT.newCall(this)
+    return OK_HTTP_CLIENT.newCall(this)
         .executeAsync()
         .use(block)
 }
+
+val OK_HTTP_CLIENT: OkHttpClient = OkHttpClient.Builder()
+    .addInterceptor(PrepareAndCallRequestInterceptor())
+    .connectTimeout(5, TimeUnit.SECONDS)
+    .writeTimeout(5, TimeUnit.SECONDS)
+    .readTimeout(5, TimeUnit.SECONDS)
+    .build()

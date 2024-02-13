@@ -38,7 +38,11 @@ public class AESUtils {
         return keyGenerator.generateKey();
     }
 
-    public static byte[] encryptToByteByCBC(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByCBC(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -48,7 +52,11 @@ public class AESUtils {
         return doEncrypt(str.getBytes(), ivParameterSpec, secretKey, AES_CBC);
     }
 
-    public static byte[] encryptToByteByCBC(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByCBC(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -58,7 +66,11 @@ public class AESUtils {
         return doEncrypt(data, ivParameterSpec, secretKey, AES_CBC);
     }
 
-    public static String encryptByCBC(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByCBC(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -68,7 +80,11 @@ public class AESUtils {
         return encryptByCBC(str.getBytes(), ivParameterSpec, secretKey);
     }
 
-    public static String encryptByCBC(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByCBC(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -78,7 +94,11 @@ public class AESUtils {
         return Base64.encodeBase64String(doEncrypt(data, ivParameterSpec, secretKey, AES_CBC));
     }
 
-    public static byte[] decryptToByteByCBC(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByCBC(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -88,7 +108,11 @@ public class AESUtils {
         return decryptToByteByCBC(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static byte[] decryptToByteByCBC(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByCBC(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -98,7 +122,11 @@ public class AESUtils {
         return doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_CBC);
     }
 
-    public static String decryptByCBC(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByCBC(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -108,7 +136,11 @@ public class AESUtils {
         return decryptByCBC(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static String decryptByCBC(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByCBC(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -118,7 +150,11 @@ public class AESUtils {
         return new String(doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_CBC));
     }
 
-    public static byte[] encryptToByteByCFB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByCFB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -128,7 +164,11 @@ public class AESUtils {
         return doEncrypt(str.getBytes(), ivParameterSpec, secretKey, AES_CFB);
     }
 
-    public static byte[] encryptToByteByCFB(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByCFB(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -138,7 +178,11 @@ public class AESUtils {
         return doEncrypt(data, ivParameterSpec, secretKey, AES_CFB);
     }
 
-    public static String encryptByCFB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByCFB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -148,7 +192,11 @@ public class AESUtils {
         return encryptByCFB(str.getBytes(), ivParameterSpec, secretKey);
     }
 
-    public static String encryptByCFB(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByCFB(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -158,7 +206,11 @@ public class AESUtils {
         return Base64.encodeBase64String(doEncrypt(data, ivParameterSpec, secretKey, AES_CFB));
     }
 
-    public static byte[] decryptToByteByCFB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByCFB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -168,7 +220,11 @@ public class AESUtils {
         return decryptToByteByCFB(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static byte[] decryptToByteByCFB(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByCFB(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -178,7 +234,11 @@ public class AESUtils {
         return doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_CFB);
     }
 
-    public static String decryptByCFB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByCFB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -188,7 +248,11 @@ public class AESUtils {
         return decryptByCFB(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static String decryptByCFB(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByCFB(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -198,7 +262,11 @@ public class AESUtils {
         return new String(doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_CFB));
     }
 
-    public static byte[] encryptToByteByECB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByECB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -208,7 +276,11 @@ public class AESUtils {
         return doEncrypt(str.getBytes(), ivParameterSpec, secretKey, AES_ECB);
     }
 
-    public static byte[] encryptToByteByECB(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] encryptToByteByECB(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -218,7 +290,11 @@ public class AESUtils {
         return doEncrypt(data, ivParameterSpec, secretKey, AES_ECB);
     }
 
-    public static String encryptByECB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByECB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -228,7 +304,11 @@ public class AESUtils {
         return encryptByECB(str.getBytes(), ivParameterSpec, secretKey);
     }
 
-    public static String encryptByECB(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String encryptByECB(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -238,7 +318,11 @@ public class AESUtils {
         return Base64.encodeBase64String(doEncrypt(data, ivParameterSpec, secretKey, AES_ECB));
     }
 
-    public static byte[] decryptToByteByECB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByECB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -248,7 +332,11 @@ public class AESUtils {
         return decryptToByteByECB(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static byte[] decryptToByteByECB(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static byte[] decryptToByteByECB(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -258,7 +346,11 @@ public class AESUtils {
         return doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_ECB);
     }
 
-    public static String decryptByECB(String str, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByECB(
+            String str,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -268,7 +360,11 @@ public class AESUtils {
         return decryptByECB(Base64.decodeBase64(str), ivParameterSpec, secretKey);
     }
 
-    public static String decryptByECB(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey)
+    public static String decryptByECB(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -278,7 +374,12 @@ public class AESUtils {
         return new String(doDecrypt(encryptedData, ivParameterSpec, secretKey, AES_ECB));
     }
 
-    private static byte[] doEncrypt(byte[] data, IvParameterSpec ivParameterSpec, SecretKey secretKey, String transformation)
+    private static byte[] doEncrypt(
+            byte[] data,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey,
+            String transformation
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,
@@ -290,7 +391,12 @@ public class AESUtils {
         return cipher.doFinal(data);
     }
 
-    private static byte[] doDecrypt(byte[] encryptedData, IvParameterSpec ivParameterSpec, SecretKey secretKey, String transformation)
+    private static byte[] doDecrypt(
+            byte[] encryptedData,
+            IvParameterSpec ivParameterSpec,
+            SecretKey secretKey,
+            String transformation
+    )
             throws NoSuchPaddingException,
             NoSuchAlgorithmException,
             InvalidAlgorithmParameterException,

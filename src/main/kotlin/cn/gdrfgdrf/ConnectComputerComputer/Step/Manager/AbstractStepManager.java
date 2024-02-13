@@ -35,7 +35,7 @@ public abstract class AbstractStepManager {
             Step step = clazz.getDeclaredConstructor().newInstance();
             StepNavigator.INSTANCE.addStep(route, step);
 
-            log.info("Register step {}", clazz.getSimpleName());
+            log.info("Add step {}", clazz.getSimpleName());
         } catch (Exception e) {
             e.printStackTrace();
         }

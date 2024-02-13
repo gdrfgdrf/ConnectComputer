@@ -133,8 +133,6 @@ Dependencies
 
 | Name                                                                  | Use in this software                      |
 |-----------------------------------------------------------------------|-------------------------------------------|
-| [Reflections](https://github.com/ronmamo/reflections)                 | Netty packet query                        |
-| [Hutool](https://github.com/dromara/hutool)                           | Asynchronous execution                    |
 | [Okhttp](https://github.com/square/okhttp)                            | Http                                      |
 | [Pty4J](https://github.com/JetBrains/pty4j)                           | Pseudo terminal                           |
 | [JediTerm](https://github.com/JetBrains/jediterm)                     | Pseudo terminal                           |

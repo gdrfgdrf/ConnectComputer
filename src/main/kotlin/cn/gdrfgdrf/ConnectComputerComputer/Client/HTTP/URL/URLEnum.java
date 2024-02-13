@@ -37,7 +37,6 @@ public enum URLEnum {
             false,
             false
     ),
-
     LOGIN(
             URLMethod.POST,
             URLRequestMappingEnum.USER_REQUEST_MAPPING,
@@ -68,7 +67,6 @@ public enum URLEnum {
             true,
             true
     ),
-
     GET_COMPUTER_LIST(
             URLMethod.POST,
             URLRequestMappingEnum.COMPUTER_REQUEST_MAPPING,
@@ -78,9 +76,7 @@ public enum URLEnum {
             true,
             true,
             true
-    )
-
-    ;
+    );
 
     @NonNull
     public final URLMethod method;

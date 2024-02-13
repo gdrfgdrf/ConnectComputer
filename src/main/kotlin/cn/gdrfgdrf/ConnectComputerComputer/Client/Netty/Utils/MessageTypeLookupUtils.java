@@ -11,8 +11,7 @@ import java.util.Set;
  */
 public class MessageTypeLookupUtils {
     public static MessageTypeLookup getMessageTypeLookup() {
-        Set<Class<? extends GeneratedMessageV3>>
-                classes = ClassScanner.lookupClasses(GeneratedMessageV3.class);
+        Set<Class<? extends GeneratedMessageV3>> classes = ClassScanner.lookupClasses();
         return generateMessageTypeLookup(classes);
     }
 

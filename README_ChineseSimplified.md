@@ -119,8 +119,6 @@ JVM 运行参数
 
 | 依赖名                                                                   | 在本软件中的用途           |
 |-----------------------------------------------------------------------|--------------------|
-| [Reflections](https://github.com/ronmamo/reflections)                 | Netty 数据包查询        |
-| [Hutool](https://github.com/dromara/hutool)                           | 异步执行               |
 | [Okhttp](https://github.com/square/okhttp)                            | Http               |
 | [Pty4J](https://github.com/JetBrains/pty4j)                           | 模拟终端               |
 | [JediTerm](https://github.com/JetBrains/jediterm)                     | 模拟终端               |

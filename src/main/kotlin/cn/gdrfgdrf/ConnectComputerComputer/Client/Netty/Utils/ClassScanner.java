@@ -1,35 +1,45 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Utils;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.ClassUtils;
 import com.google.protobuf.GeneratedMessageV3;
-import org.reflections.Reflections;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.File;
+import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * @author gdrfgdrf
  */
 public class ClassScanner {
-    private static final Reflections DEFAULT_REFLECTIONS = new Reflections("cn.gdrfgdrf.Protobuf");
+    private static final File SEARCH_ROOT;
+    private static final String PACKAGE_NAME;
+
+    static {
+        String classPath = ClassScanner.class.getResource("/").getPath();
+        String packagePath = "cn/gdrfgdrf/Protobuf";
+        SEARCH_ROOT = new File(classPath + packagePath);
+        PACKAGE_NAME = "cn.gdrfgdrf.Protobuf";
+    }
+
     private static final Set<Class<? extends GeneratedMessageV3>> DEFAULT_CLASSES_SET = new HashSet<>();
 
-    public static Set<Class<? extends GeneratedMessageV3>> lookupClasses(Class<GeneratedMessageV3> subType) {
+    public static Set<Class<? extends GeneratedMessageV3>> lookupClasses() {
         if (DEFAULT_CLASSES_SET.isEmpty()) {
-            DEFAULT_CLASSES_SET.addAll(DEFAULT_REFLECTIONS.getSubTypesOf(subType));
+            Set<Class<?>> temp = new HashSet<>();
+            ClassUtils.search(SEARCH_ROOT, PACKAGE_NAME, clazz -> {
+                try {
+                    if (clazz.asSubclass(GeneratedMessageV3.class) != null) {
+                        return true;
+                    }
+                } catch (Exception ignored) {
+                }
+
+                return false;
+            }, temp);
+            temp.forEach(clazz -> {
+                DEFAULT_CLASSES_SET.add((Class<? extends GeneratedMessageV3>) clazz);
+            });
         }
         return DEFAULT_CLASSES_SET;
-    }
-
-    public static <T> Set<Class<? extends T>> lookupClasses(Class<T> subType, String... basePackages) {
-        Reflections reflections = new Reflections(basePackages);
-        return reflections.getSubTypesOf(subType);
-    }
-
-    public static <T> Set<Class<? extends T>> lookupClasses(Class<T> subType, Class<?>... basePackageClasses) {
-        String[] basePackages = new String[basePackageClasses.length];
-        for(int i = 0; i < basePackageClasses.length; i ++) {
-            basePackages[i] = basePackageClasses[i].getPackage().getName();
-        }
-        return lookupClasses(subType, basePackages);
     }
 }

@@ -11,7 +11,6 @@ import kotlin.coroutines.resumeWithException
 /**
  * @author gdrfgdrf
  */
-
 @OptIn(ExperimentalCoroutinesApi::class)
 suspend fun Call.executeAsync(): Response = suspendCancellableCoroutine { continuation ->
     continuation.invokeOnCancellation {
