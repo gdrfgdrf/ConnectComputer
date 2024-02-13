@@ -1,16 +1,24 @@
 package cn.gdrfgdrf.ConnectComputerComputer.CLI;
 
 import cn.gdrfgdrf.ConnectComputerComputer.CLI.Exception.ApplicationClosedException;
+import cn.gdrfgdrf.ConnectComputerComputer.Thread.ThreadPoolService;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.Platform;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author gdrfgdrf
  */
 public class DefaultCLITerminal implements CLITerminal {
+    private final LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
+
     private final Scanner scanner = new Scanner(System.in);
     private final OutputStream outputStream = System.out;
     private String prompt;
@@ -25,6 +33,8 @@ public class DefaultCLITerminal implements CLITerminal {
             } catch (Exception ignored) {
             }
         }));
+
+        ThreadPoolService.newTask(new TerminalReader());
     }
 
     @Override
@@ -32,36 +42,42 @@ public class DefaultCLITerminal implements CLITerminal {
         this.prompt = prompt;
     }
 
-    private String readLineInternal(String prompt) throws IOException, ApplicationClosedException {
-        if (closed) {
-            throw new ApplicationClosedException();
+    @Override
+    public String readLine() throws Exception {
+        return readLineInternal(prompt);
+    }
+
+    @Override
+    public String readLine(String prompt) throws Exception {
+        return readLineInternal(prompt);
+    }
+
+    @Override
+    public void interruptReadLine() throws Exception {
+        if (Platform.isWindows()) {
+            queue.put("\r\n");
+            return;
         }
-        if (!scanner.hasNext()) {
+        queue.put("\n");
+    }
+
+    private String readLineInternal(String prompt) throws Exception {
+        if (closed) {
             throw new ApplicationClosedException();
         }
         if (prompt != null) {
             write(prompt);
         }
-        return scanner.nextLine();
+        return queue.take();
     }
 
     @Override
-    public String readLine() throws IOException, ApplicationClosedException {
-        return readLineInternal(prompt);
-    }
-
-    @Override
-    public String readLine(String prompt) throws IOException, ApplicationClosedException {
-        return readLineInternal(prompt);
-    }
-
-    @Override
-    public void write(byte[] bytes) throws IOException {
+    public void write(byte[] bytes) throws Exception {
         outputStream.write(bytes);
     }
 
     @Override
-    public void write(String s) throws IOException, ApplicationClosedException {
+    public void write(String s) throws Exception {
         if (closed) {
             throw new ApplicationClosedException();
         }
@@ -69,11 +85,38 @@ public class DefaultCLITerminal implements CLITerminal {
     }
 
     @Override
-    public void newLine() throws IOException, ApplicationClosedException {
+    public void newLine() throws Exception {
         if (Platform.isWindows()) {
             write("\r\n");
             return;
         }
         write("\n");
+    }
+
+    private class TerminalReader implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    if (closed) {
+                        interruptReadLine();
+                        break;
+                    }
+                    String line = scanner.nextLine();
+
+                    queue.put(line);
+                } catch (NoSuchElementException | InterruptedException ignored) {
+                    closed = true;
+                    try {
+                        interruptReadLine();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

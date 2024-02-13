@@ -4,7 +4,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Base.BasePacketHandler;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.PacketHandler.Annotation.PacketHandler;
 import cn.gdrfgdrf.Protobuf.Action.Computer.ComputerProto;
 import cn.gdrfgdrf.Protobuf.BaseProto;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.MenuNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.NettyCallback.Interface.Packet.NettyDefaultPacketCallback;

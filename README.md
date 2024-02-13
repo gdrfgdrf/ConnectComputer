@@ -111,7 +111,7 @@ The parameters are verified at run time.
 
 JVM Parameter
 -------------------------
-We used Cglib as a dynamic proxy, so please precede -jar with the following:
+We used Cglib to implement dynamic proxies, so please precede -jar with the following:
 
     --add-opens=java.base/java.lang=ALL-UNNAMED
 

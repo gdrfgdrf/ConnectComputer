@@ -13,7 +13,7 @@ object LoginParser : BaseParser<ParseResult>() {
     override suspend fun parse(responseBody: ResponseBody, args: Any?): ParseResult {
         val result = super.baseParse(responseBody)
 
-        if (result.success) {
+        if (result.isSuccess) {
             val data = result.getInformation(UserSecretInformation::class.java)
 
             val id = data.id

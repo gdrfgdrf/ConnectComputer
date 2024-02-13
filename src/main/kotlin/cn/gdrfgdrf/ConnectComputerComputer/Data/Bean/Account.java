@@ -27,7 +27,7 @@ public class Account implements DataBean {
         this.password = password;
     }
 
-    public Boolean getAutoLogin() {
+    public Boolean isAutoLogin() {
         return autoLogin;
     }
 
@@ -35,7 +35,7 @@ public class Account implements DataBean {
         this.autoLogin = autoLogin;
     }
 
-    public Boolean getController() {
+    public Boolean isController() {
         return controller;
     }
 

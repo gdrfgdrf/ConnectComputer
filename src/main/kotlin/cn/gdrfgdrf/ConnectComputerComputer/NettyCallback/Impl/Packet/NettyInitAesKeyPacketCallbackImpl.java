@@ -23,7 +23,7 @@ public class NettyInitAesKeyPacketCallbackImpl implements NettyInitAesKeyPacketC
 
         AccountProto.UserLoginPacket userLoginPacket = AccountProto.UserLoginPacket.newBuilder()
                 .setToken(User.INSTANCE.getToken())
-                .setLoginMode(account.getController() ?
+                .setLoginMode(account.isController() ?
                         AccountEnumProto.LoginModeEnum.CONTROLLER : AccountEnumProto.LoginModeEnum.COMPUTER)
                 .build();
 

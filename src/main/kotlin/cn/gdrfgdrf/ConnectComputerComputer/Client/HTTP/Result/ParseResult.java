@@ -28,7 +28,7 @@ public class ParseResult {
     @JsonIgnore
     private SuperJsonNode rawJson;
 
-    public Boolean getSuccess() {
+    public Boolean isSuccess() {
         return code == Constants.SUCCESS;
     }
 

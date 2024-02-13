@@ -1,11 +1,11 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Menu.Impl;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Common.Network.Http.HttpNetworkRequest;
 import cn.gdrfgdrf.ConnectComputerComputer.Common.User.User;
-import cn.gdrfgdrf.ConnectComputerComputer.Menu.Network.Http.Enum.HttpSiteEnum;
+import cn.gdrfgdrf.ConnectComputerComputer.Common.Network.Http.Enum.HttpSiteEnum;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Computer.ComputerInformation;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
-import cn.gdrfgdrf.ConnectComputerComputer.Menu.Network.Http.Base.MenuHttpNetworkRequest;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.MenuNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Validation.Annotation.Validated;
@@ -32,8 +32,8 @@ public class ComputerListMenu extends Menu {
     }
 
     @Override
-    public void popup(Object args, MenuHttpNetworkRequest request) throws Exception {
-        request.request(
+    public void popup(Object args) throws Exception {
+        HttpNetworkRequest.INSTANCE.request(
                 HttpSiteEnum.GET_COMPUTER_LIST,
                 User.INSTANCE.getId()
         );

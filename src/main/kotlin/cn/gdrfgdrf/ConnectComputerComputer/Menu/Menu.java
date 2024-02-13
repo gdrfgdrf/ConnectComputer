@@ -1,6 +1,5 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Menu;
 
-import cn.gdrfgdrf.ConnectComputerComputer.Menu.Network.Http.Base.MenuHttpNetworkRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +20,7 @@ public abstract class Menu {
     private final Object lock = new Object();
 
     public abstract String getTitle();
-    public abstract void popup(Object args, MenuHttpNetworkRequest request) throws Exception;
+    public abstract void popup(Object args) throws Exception;
     public abstract void dismiss() throws Exception;
     public abstract void userInput(String input) throws Exception;
 }

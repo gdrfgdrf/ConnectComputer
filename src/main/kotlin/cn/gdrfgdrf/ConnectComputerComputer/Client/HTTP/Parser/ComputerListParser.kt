@@ -11,12 +11,10 @@ import org.slf4j.LoggerFactory
  * @author gdrfgdrf
  */
 object ComputerListParser : BaseParser<ParseResult>() {
-    private val log: Logger = LoggerFactory.getLogger(ComputerListParser::class.java)
-
     override suspend fun parse(responseBody: ResponseBody, args: Any?): ParseResult {
         val baseBody = super.baseParse(responseBody)
 
-        if (baseBody.success) {
+        if (baseBody.isSuccess) {
             val data = baseBody.getInformation(ComputerListInformation::class.java)
 
             User.computerList.clear()

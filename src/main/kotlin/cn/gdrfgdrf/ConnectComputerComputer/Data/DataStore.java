@@ -45,7 +45,7 @@ public class DataStore implements Bean {
 
     public void createDataBean(Field field) throws Exception {
         String fieldClassName = field.getType().getSimpleName();
-        log.info("Initializing " + fieldClassName);
+        log.info("Initializing {}", fieldClassName);
 
         File fieldClassNameFile = new File(fieldClassName + ".json");
         if (!fieldClassNameFile.exists()) {
@@ -65,11 +65,11 @@ public class DataStore implements Bean {
         DataBean dataBean = (DataBean) field.get(this);
         dataBean.init(this);
 
-        log.info(fieldClassName + " Initialized");
+        log.info("{} Initialized", fieldClassName);
     }
 
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         Class<?> clazz = DataStore.class;
         Field[] fields = clazz.getDeclaredFields();
 

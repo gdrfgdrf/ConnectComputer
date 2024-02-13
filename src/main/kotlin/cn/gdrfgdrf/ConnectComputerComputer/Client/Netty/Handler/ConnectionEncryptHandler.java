@@ -6,7 +6,6 @@ import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Utils.MessageTypeUnpacke
 import cn.gdrfgdrf.ConnectComputerComputer.Common.Key.AesKey;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.Account;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.GlobalConfiguration;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.AESUtils;
 import cn.gdrfgdrf.Protobuf.Action.Computer.Security.ComputerSecurityProto;
@@ -16,7 +15,6 @@ import cn.gdrfgdrf.Protobuf.Common.AnyPacketProto;
 import cn.gdrfgdrf.Protobuf.Connection.Heart.HeartProto;
 import cn.gdrfgdrf.Protobuf.Security.SecurityEnumProto;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.Message;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
@@ -51,7 +49,7 @@ public class ConnectionEncryptHandler extends MessageToMessageEncoder<BaseProto.
         bytes = AESUtils.encryptToByteByCBC(bytes, aesKey.getIv(), aesKey.getKey());
 
         Message resultMessage;
-        if (account.getController()) {
+        if (account.isController()) {
             resultMessage = ControllerSecurityProto.EncryptBlockPacket.newBuilder()
                     .setEncryptAlgorithm(SecurityEnumProto.EncryptAlgorithmEnum.AES)
                     .setEncrypted(ByteString.copyFrom(bytes))

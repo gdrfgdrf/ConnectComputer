@@ -15,6 +15,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanInfo;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanMethodInterceptor;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanOrder;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanUseMethodInterceptor;
+import cn.gdrfgdrf.ConnectComputerComputer.Step.Manager.StepManager;
 import cn.gdrfgdrf.ConnectComputerComputer.TypeConvertor.Manager.TypeConvertorManager;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +43,9 @@ import java.util.*;
                 MenuManager.class,
 
                 PacketHandlerManager.class,
-                NettyCallbackManager.class
+                NettyCallbackManager.class,
+
+                StepManager.class
         }
 )
 public class BeanManager {
@@ -104,7 +107,7 @@ public class BeanManager {
                     instance = taskClazz.getConstructor().newInstance();
                 }
 
-                instance.run();
+                instance.init();
 
                 BEAN_MAP.put(name, instance);
 

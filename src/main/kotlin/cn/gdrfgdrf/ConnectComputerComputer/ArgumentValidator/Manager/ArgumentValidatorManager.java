@@ -14,7 +14,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 })
 public class ArgumentValidatorManager extends AbstractArgumentValidatorManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initArgumentValidator();
     }
 }

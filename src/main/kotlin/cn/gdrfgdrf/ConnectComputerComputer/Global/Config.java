@@ -18,7 +18,7 @@ public class Config implements Bean {
     private String locale = "ChineseSimplified.json";
 
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         File file = new File("config.json");
 
         if (!file.exists()) {

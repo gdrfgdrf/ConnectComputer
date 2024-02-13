@@ -13,13 +13,13 @@ object ChangePasswordParser : BaseParser<ParseResult>() {
     override suspend fun parse(responseBody: ResponseBody, args: Any?): ParseResult {
         val baseBody = super.baseParse(responseBody)
 
-        if (baseBody.success) {
+        if (baseBody.isSuccess) {
             val dataStore: DataStore = BeanManager.getInstance().getBean("DataStore")
             val account = dataStore.account
 
             account.username = null
             account.password = null
-            account.autoLogin = null
+            account.isAutoLogin = null
 
             dataStore.saveDataBean(account)
 

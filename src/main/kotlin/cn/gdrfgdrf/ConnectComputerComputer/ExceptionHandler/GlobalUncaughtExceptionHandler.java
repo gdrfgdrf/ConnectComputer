@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalUncaughtExceptionHandler implements BetterUncaughtExceptionHandler, Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 

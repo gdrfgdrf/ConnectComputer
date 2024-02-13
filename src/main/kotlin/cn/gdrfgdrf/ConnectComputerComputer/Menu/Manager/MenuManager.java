@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Menu.Manager;
 
-import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Annotation.MenuClass;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Impl.ComputerControlMenu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Impl.ComputerDetailMenu;
@@ -22,7 +22,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
         })
 public class MenuManager extends AbstractMenuManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initMenu();
     }
 }

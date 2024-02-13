@@ -23,7 +23,7 @@ public class NettyLoginPacketCallbackImpl implements NettyLoginPacketCallback {
 
         DataStore dataStore = BeanManager.getInstance().getBean("DataStore");
         Account account = dataStore.getAccount();
-        if (account.getController()) {
+        if (account.isController()) {
             return;
         }
         ComputerData computerData = dataStore.getComputerData();

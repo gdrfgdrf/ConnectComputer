@@ -1,9 +1,8 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Menu.Impl;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Computer.ComputerInformation;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
-import cn.gdrfgdrf.ConnectComputerComputer.Menu.Network.Http.Base.MenuHttpNetworkRequest;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Operation.Impl.EnterMenuOperation;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Operation.OperationExecutor;
@@ -33,7 +32,7 @@ public class ComputerDetailMenu extends Menu {
             NotNullValidator.class
     })
     @Override
-    public void popup(Object args, MenuHttpNetworkRequest request) throws Exception {
+    public void popup(Object args) throws Exception {
         computerInformation = (ComputerInformation) args;
         String result = TableConvertor.convert(
                 computerInformation,

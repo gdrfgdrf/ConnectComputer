@@ -6,7 +6,6 @@ import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.ConnectionStateCh
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.ConnectionStateChangePoster.ConnectionStateChangeReceiver;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.PacketPoster.PacketPoster;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.PacketPoster.PacketReceiver;
-import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.SyncPacketPoster.SyncPacketPoster;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Utils.AnyPacketPacker;
 import cn.gdrfgdrf.ConnectComputerComputer.Common.Key.AesKey;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.GlobalConfiguration;
@@ -23,14 +22,12 @@ import cn.gdrfgdrf.Protobuf.BaseProto;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.MenuNavigator;
-import cn.gdrfgdrf.ConnectComputerComputer.Menu.Network.Http.Base.MenuHttpNetworkRequest;
 import cn.gdrfgdrf.Protobuf.Common.AnyPacketProto;
 import cn.gdrfgdrf.Protobuf.Common.EnumProto;
 import cn.gdrfgdrf.Protobuf.Security.SecurityEnumProto;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.Message;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.tomcat.util.codec.binary.Base64;
 
@@ -59,7 +56,7 @@ public class ComputerControlMenu extends Menu {
     }
 
     @Override
-    public void popup(Object args, MenuHttpNetworkRequest request) throws Exception {
+    public void popup(Object args) throws Exception {
         computerInformation = (ComputerInformation) args;
         if (!connectComputer()) {
             MenuNavigator.INSTANCE.dismiss();

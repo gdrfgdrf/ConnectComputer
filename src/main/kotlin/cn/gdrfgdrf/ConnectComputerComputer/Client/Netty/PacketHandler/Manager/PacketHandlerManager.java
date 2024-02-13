@@ -34,7 +34,7 @@ import cn.gdrfgdrf.Protobuf.Action.Computer.Security.ComputerSecurityProto;
 )
 public class PacketHandlerManager extends AbstractPacketHandlerManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initHandler();
     }
 }

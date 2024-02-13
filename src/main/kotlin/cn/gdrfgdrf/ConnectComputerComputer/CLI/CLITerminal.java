@@ -9,12 +9,13 @@ import java.io.IOException;
  */
 public interface CLITerminal {
     void setPrompt(String prompt);
-    String readLine() throws IOException, ApplicationClosedException;
-    String readLine(String prompt) throws IOException, ApplicationClosedException;
+    String readLine() throws Exception;
+    String readLine(String prompt) throws Exception;
+    void interruptReadLine() throws Exception;
 
-    void write(byte[] bytes) throws IOException;
-    void write(String s) throws IOException, ApplicationClosedException;
-    void newLine() throws IOException, ApplicationClosedException;
+    void write(byte[] bytes) throws Exception;
+    void write(String s) throws Exception;
+    void newLine() throws Exception;
 
 
 }

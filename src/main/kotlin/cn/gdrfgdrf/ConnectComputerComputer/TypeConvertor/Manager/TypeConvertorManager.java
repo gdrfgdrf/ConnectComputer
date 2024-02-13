@@ -12,7 +12,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.TypeConvertor.Impl.IntegerTypeConvert
 })
 public class TypeConvertorManager extends AbstractTypeConvertorManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initTypeConvertor();
     }
 }

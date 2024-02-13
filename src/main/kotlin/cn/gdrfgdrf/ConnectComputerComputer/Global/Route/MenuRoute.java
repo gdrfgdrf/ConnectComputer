@@ -1,4 +1,4 @@
-package cn.gdrfgdrf.ConnectComputerComputer.Global;
+package cn.gdrfgdrf.ConnectComputerComputer.Global.Route;
 
 /**
  * @author gdrfgdrf

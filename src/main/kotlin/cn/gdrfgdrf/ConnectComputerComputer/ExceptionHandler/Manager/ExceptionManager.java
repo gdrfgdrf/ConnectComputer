@@ -28,7 +28,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 )
 public class ExceptionManager extends AbstractExceptionManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initExceptionHandler();
     }
 }

@@ -34,6 +34,8 @@ public class JacksonUtils {
         MAPPER_INSTANCE.registerModule(simpleModule);
     }
 
+    private JacksonUtils() {}
+
     public static <T> T readString(String jsonString, Class<?> type) throws JsonProcessingException {
         return (T) MAPPER_INSTANCE.readValue(jsonString, type);
     }

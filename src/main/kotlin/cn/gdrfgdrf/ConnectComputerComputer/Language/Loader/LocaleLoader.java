@@ -25,7 +25,7 @@ public class LocaleLoader implements Bean {
     private final Class<? extends Language> DEFAULT_LANGUAGE = ChineseSimplified.class;
 
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         Config config = BeanManager.getInstance().getBean("Config");
         loadLocale(config);
     }

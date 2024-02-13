@@ -39,4 +39,10 @@ public class ServerInfo implements DataBean {
     public void setPort(Integer port) {
         this.port = port;
     }
+
+    public void reset() {
+        sslEnabled = null;
+        ip = null;
+        port = null;
+    }
 }

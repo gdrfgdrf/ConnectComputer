@@ -33,7 +33,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 )
 public class NettyCallbackManager extends AbstractNettyCallbackManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initNettyCallback();
     }
 }

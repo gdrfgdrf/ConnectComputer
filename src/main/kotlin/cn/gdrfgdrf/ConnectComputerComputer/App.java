@@ -9,28 +9,28 @@ import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Validator.UsernameA
 import cn.gdrfgdrf.ConnectComputerComputer.CLI.CLITerminal;
 import cn.gdrfgdrf.ConnectComputerComputer.CLI.DefaultCLITerminal;
 import cn.gdrfgdrf.ConnectComputerComputer.CLI.Exception.ApplicationClosedException;
-import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Deserializer.InformationDeserializer;
-import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Information;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.NettyClient;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.Account;
-import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.RSA;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.ServerInfo;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
-import cn.gdrfgdrf.ConnectComputerComputer.Data.Deserializer.RSADeserializer;
-import cn.gdrfgdrf.ConnectComputerComputer.Data.Serializer.RSASerializer;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.StepRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.MenuNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.BeanManager;
+import cn.gdrfgdrf.ConnectComputerComputer.Step.Base.Step;
+import cn.gdrfgdrf.ConnectComputerComputer.Step.Callback.StepChainCallback;
+import cn.gdrfgdrf.ConnectComputerComputer.Step.StepNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.Thread.ThreadPoolService;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.AppUtils;
-import cn.gdrfgdrf.ConnectComputerComputer.Utils.StringUtils;
 import io.netty.util.internal.logging.InternalLoggerFactory;
 import io.netty.util.internal.logging.JdkLoggerFactory;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -60,6 +60,9 @@ public class App {
 
     @Argument
     private Boolean silent = false;
+
+    @Setter
+    private Boolean unencryptedPassword = false;
 
     public static void main(String[] args) throws Exception {
         INSTANCE.run(args);
@@ -91,9 +94,15 @@ public class App {
         CLITerminal cliTerminal = new DefaultCLITerminal();
         cliTerminal.setPrompt(Constants.PROMPT);
 
-        AppKotlin appKotlin = new AppKotlin(log, dataStore, cliTerminal);
-        appKotlin.enterServerInfo();
-        appKotlin.enterAccount(!StringUtils.isBlank(password));
+        StepExecutor stepExecutor = new StepExecutor();
+        stepExecutor.setDataStore(dataStore);
+        stepExecutor.setCliTerminal(cliTerminal);
+        stepExecutor.start();
+
+        final Object lock = stepExecutor.getLock();
+        synchronized (lock) {
+            lock.wait();
+        }
 
         ThreadPoolService.newTask(() -> {
             try {
@@ -104,8 +113,7 @@ public class App {
             }
         });
 
-        if (account.getController()) {
-            MenuNavigator.INSTANCE.setMenuHttpNetworkRequest(appKotlin.getMenuHttpNetworkRequest());
+        if (account.isController()) {
             MenuNavigator.INSTANCE.popup(MenuRoute.MENU_ROUTE_COMPUTER_LIST);
 
             while (true) {
@@ -118,7 +126,7 @@ public class App {
                     AppUtils.exitProgram();
                     break;
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                 }
             }
         }
@@ -164,6 +172,7 @@ public class App {
         }
         if (password != null) {
             account.setPassword(password);
+            unencryptedPassword = true;
         }
         if (autoLogin != null) {
             account.setAutoLogin(autoLogin);
@@ -173,7 +182,11 @@ public class App {
         }
     }
 
-    public Boolean getSilent() {
+    public Boolean isSilent() {
         return silent;
+    }
+
+    public Boolean isUnencryptedPassword() {
+        return unencryptedPassword;
     }
 }

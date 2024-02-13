@@ -44,7 +44,10 @@ public class NetworkUtils {
         return isValidPort(port);
     }
 
-    public static boolean isValidPort(int i) {
+    public static boolean isValidPort(Integer i) {
+        if (i == null) {
+            return false;
+        }
         if (i < 0) {
             return false;
         }

@@ -38,7 +38,7 @@ public class InformationCollection implements Bean {
     public static final Map<String, Class<? extends Information>> MAP = new HashMap<>();
 
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         InformationClass informationClass = getClass().getAnnotation(InformationClass.class);
         if (informationClass == null) {
             return;

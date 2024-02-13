@@ -25,20 +25,20 @@ public abstract class AbstractMenuManager {
         String[] routes = menuClass.routes();
 
         for (int i = 0; i < classes.length; i++) {
-            Class<? extends Menu> clazz = classes[i];
             String route = routes[i];
+            Class<? extends Menu> clazz = classes[i];
 
-            initMenu(clazz, route);
+            initMenu(route, clazz);
         }
     }
 
-    private void initMenu(Class<? extends Menu> clazz, String route) {
+    private void initMenu(String route, Class<? extends Menu> clazz) {
         try {
             Menu menu = MenuMethodInterceptor.INSTANCE.createInstance(clazz);
 
             MenuNavigator.INSTANCE.registerMenu(route, menu);
 
-            log.info("Register menu " + menu.getClass().getSimpleName());
+            log.info("Register menu {}", menu.getClass().getSimpleName());
         } catch (Exception e) {
             e.printStackTrace();
         }

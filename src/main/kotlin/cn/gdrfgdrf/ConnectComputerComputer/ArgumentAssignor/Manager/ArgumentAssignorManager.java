@@ -16,7 +16,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
 })
 public class ArgumentAssignorManager extends AbstractArgumentAssignorManager implements Bean {
     @Override
-    public void run() throws Exception {
+    public void init() throws Exception {
         super.initArgumentAssignor();
     }
 }

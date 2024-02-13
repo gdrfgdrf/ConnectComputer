@@ -12,11 +12,10 @@ import java.security.PublicKey
  * @author gdrfgdrf
  */
 object GetPublicKeyParser : BaseParser<ParseResult>() {
-
     override suspend fun parse(responseBody: ResponseBody, args: Any?): ParseResult {
         val baseResult = super.baseParse(responseBody)
 
-        if (baseResult.success) {
+        if (baseResult.isSuccess) {
             val information = baseResult.getInformation(KeyInformation::class.java)
             val key = information.publicKey
             val publicKey: PublicKey = RSAUtils.getPublicKey(key)
@@ -31,5 +30,4 @@ object GetPublicKeyParser : BaseParser<ParseResult>() {
 
         return baseResult
     }
-
 }
