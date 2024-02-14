@@ -1,5 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Language.Base;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Annotation.Keep;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.FileUtils;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.JacksonUtils;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -13,6 +14,7 @@ import java.lang.reflect.Field;
  * @author gdrfgdrf
  */
 public abstract class Language {
+    @Keep
     public static void writeTo(Class<? extends Language> clazz, File file) throws IOException {
         ObjectNode objectNode = JacksonUtils.newTree();
         Field[] fields = clazz.getFields();

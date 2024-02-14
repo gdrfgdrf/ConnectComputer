@@ -1,5 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Data;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Annotation.Keep;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Annotation.CreateOnGetIfNotExist;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.*;
 import cn.gdrfgdrf.ConnectComputerComputer.Interceptor.DataStoreCreateOnGetIfNotExistMethodInterceptor;
@@ -22,10 +23,14 @@ import java.lang.reflect.Field;
         interceptorClass = DataStoreCreateOnGetIfNotExistMethodInterceptor.class
 )
 public class DataStore implements Bean {
+    @Keep
     private RSA rsa = new RSA();
+    @Keep
     private ServerInfo serverInfo = new ServerInfo();
+    @Keep
     @CreateOnGetIfNotExist
     private ComputerData computerData = new ComputerData();
+    @Keep
     private Account account = new Account();
 
     public void saveDataBean(DataBean dataBean) throws IOException {

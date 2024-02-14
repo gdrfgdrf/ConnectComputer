@@ -1,5 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Annotation.Keep;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentAssignor.Annotation.Argument;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentAssignor.ArgumentAssignorExecutor;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Annotation.ArgumentValidated;
@@ -15,14 +16,10 @@ import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.ServerInfo;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.StepRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.MenuNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.BeanManager;
-import cn.gdrfgdrf.ConnectComputerComputer.Step.Base.Step;
-import cn.gdrfgdrf.ConnectComputerComputer.Step.Callback.StepChainCallback;
-import cn.gdrfgdrf.ConnectComputerComputer.Step.StepNavigator;
 import cn.gdrfgdrf.ConnectComputerComputer.Thread.ThreadPoolService;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.AppUtils;
 import io.netty.util.internal.logging.InternalLoggerFactory;
@@ -30,7 +27,6 @@ import io.netty.util.internal.logging.JdkLoggerFactory;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -40,30 +36,39 @@ import java.util.Map;
 public class App {
     public static final App INSTANCE = new App();
 
+    @Keep
     @Argument
     private Boolean ssl;
+    @Keep
     @Argument
     private String serverIp;
+    @Keep
     @Argument
     @ArgumentValidated(validator = PortArgumentValidator.class)
     private Integer port;
 
+    @Keep
     @Argument
     @ArgumentValidated(validator = UsernameArgumentValidator.class)
     private String username;
+    @Keep
     @Argument
     private String password;
+    @Keep
     @Argument
     private Boolean autoLogin;
+    @Keep
     @Argument
     private Boolean controller;
 
+    @Keep
     @Argument
     private Boolean silent = false;
 
     @Setter
     private Boolean unencryptedPassword = false;
 
+    @Keep
     public static void main(String[] args) throws Exception {
         INSTANCE.run(args);
     }

@@ -1,5 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Interceptor;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Annotation.Keep;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataBean;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
 import cn.gdrfgdrf.ConnectComputerComputer.Bean.Annotation.BeanMethodInterceptor;
@@ -41,6 +42,7 @@ public class DataStoreCreateOnGetIfNotExistMethodInterceptor implements MethodIn
         return proxy.invokeSuper(obj, args);
     }
 
+    @Keep
     public static <T> T createInstance(Class<? extends DataStore> clazz) throws NoSuchMethodException {
         DataStoreCreateOnGetIfNotExistMethodInterceptor interceptor = new DataStoreCreateOnGetIfNotExistMethodInterceptor();
         interceptor.methods.putAll(filterMethod(clazz));
