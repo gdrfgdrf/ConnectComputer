@@ -6,7 +6,7 @@
 
     <artifactId>ConnectComputerComputer</artifactId>
     <groupId>cn.gdrfgdrf.ConnectComputer</groupId>
-    <version>1.0</version>
+    <version>1.1.0.20240215</version>
     <packaging>jar</packaging>
 
     <name>consoleApp</name>
@@ -254,8 +254,8 @@
                 </executions>
                 <configuration>
                     <proguardVersion>7.2.2</proguardVersion>
-                    <injar>ConnectComputerComputer-1.0-jar-with-dependencies.jar</injar>
-                    <outjar>ConnectComputerComputer-1.0-pg.jar</outjar>
+                    <injar>ConnectComputerComputer-${version}-jar-with-dependencies.jar</injar>
+                    <outjar>ConnectComputerComputer-${version}-pg.jar</outjar>
                     <proguardInclude>${project.basedir}/proguard.cfg</proguardInclude>
                     <addManifest>true</addManifest>
                     <addMavenDescriptor>true</addMavenDescriptor>
