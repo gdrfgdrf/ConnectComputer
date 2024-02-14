@@ -11,6 +11,10 @@ public class RuntimeExceptionPostProcessor implements ExceptionPostProcessor<Run
         Exception result = e;
 
         if (e != null) {
+            if (!(e.getCause() instanceof Exception)) {
+                return e;
+            }
+
             result = (Exception) e.getCause();
         }
 
