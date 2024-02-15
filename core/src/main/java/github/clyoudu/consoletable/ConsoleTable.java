@@ -167,7 +167,7 @@ public class ConsoleTable {
             }});
         }};
         //default
-        new ConsoleTable.ConsoleTableBuilder().addHeaders(header).addRows(body).build().print();
+        new ConsoleTableBuilder().addHeaders(header).addRows(body).build().print();
 
         //中文
         header = new ArrayList<Cell>(){{
@@ -192,7 +192,7 @@ public class ConsoleTable {
                 add(new Cell(Align.LEFT,"11这是一串很长的中文"));
             }});
         }};
-        new ConsoleTable.ConsoleTableBuilder().addHeaders(header).addRows(body).build().print();
+        new ConsoleTableBuilder().addHeaders(header).addRows(body).build().print();
 
         //no header
         //new ConsoleTable.ConsoleTableBuilder().addRows(body).build().print();

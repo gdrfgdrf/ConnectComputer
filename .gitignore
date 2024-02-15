@@ -22,3 +22,4 @@ target/
 /RSA.json
 /ServerInfo.json
 /target/
+/core/.gitignore
