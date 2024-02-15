@@ -154,7 +154,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -198,7 +198,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                                <sourceDir>src/main/java</sourceDir>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -254,8 +254,8 @@
                 </executions>
                 <configuration>
                     <proguardVersion>7.2.2</proguardVersion>
-                    <injar>ConnectComputerComputer-${version}-jar-with-dependencies.jar</injar>
-                    <outjar>ConnectComputerComputer-${version}-pg.jar</outjar>
+                    <injar>ConnectComputerComputer-${project.version}-jar-with-dependencies.jar</injar>
+                    <outjar>ConnectComputerComputer-${project.version}-pg.jar</outjar>
                     <proguardInclude>${project.basedir}/proguard.cfg</proguardInclude>
                     <addManifest>true</addManifest>
                     <addMavenDescriptor>true</addMavenDescriptor>
