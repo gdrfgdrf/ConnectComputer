@@ -23,3 +23,5 @@ target/
 /ServerInfo.json
 /target/
 /core/.gitignore
+/api/.gitignore
+/packer/.gitignore
