@@ -7,12 +7,11 @@ import java.util.List;
  * @author gdrfgdrf
  */
 public enum VersionEnum {
-    v1_0,
     v1_0_0,
-    v1_1_0_20240215
+    v1_2_0_20240217
     ;
 
-    public static final VersionEnum CURRENT = VersionEnum.v1_1_0_20240215;
+    public static final VersionEnum CURRENT = VersionEnum.v1_2_0_20240217;
     private static List<VersionEnum> versions;
 
     VersionEnum() {
