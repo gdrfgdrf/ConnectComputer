@@ -15,26 +15,24 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Handler;
+package cn.gdrfgdrf.ConnectComputerComputer.Api.Configuration;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Api.Enum.VersionEnum;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import cn.gdrfgdrf.Protobuf.BaseProto;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageEncoder;
-
-import java.util.List;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.GlobalConfiguration;
 
 /**
+ * core 配置实现
  * @author gdrfgdrf
  */
-public class ClientVersionHandler extends MessageToMessageEncoder<BaseProto.Packet> {
+public class CoreConfigImpl implements CoreConfig {
     @Override
-    protected void encode(ChannelHandlerContext ctx, BaseProto.Packet packet, List<Object> out) throws Exception {
-        out.add(
-                packet.toBuilder()
-                        .setClientVersion(VersionEnum.CURRENT.name())
-                        .build()
-        );
+    public String getCoreVersion() {
+        return VersionEnum.CURRENT.name();
+    }
+
+    @Override
+    public boolean isDebugEnabled() {
+        return GlobalConfiguration.DEBUG;
     }
 }

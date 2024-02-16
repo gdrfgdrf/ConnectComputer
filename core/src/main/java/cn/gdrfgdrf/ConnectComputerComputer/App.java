@@ -32,6 +32,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.Account;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.Bean.ServerInfo;
 import cn.gdrfgdrf.ConnectComputerComputer.Data.DataStore;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.GlobalConfiguration;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Route.MenuRoute;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
 import cn.gdrfgdrf.ConnectComputerComputer.Menu.Menu;
@@ -77,10 +78,12 @@ public class App {
     @Keep
     @Argument
     private Boolean controller;
-
     @Keep
     @Argument
     private Boolean silent = false;
+    @Keep
+    @Argument
+    private Boolean debug = false;
 
     @Setter
     private Boolean unencryptedPassword = false;
@@ -91,7 +94,12 @@ public class App {
     }
 
     private void run(String[] args) throws Exception {
-        InternalLoggerFactory.setDefaultFactory(JdkLoggerFactory.INSTANCE);
+        if (debug) {
+            GlobalConfiguration.DEBUG = true;
+            log.info(AppLocale.DEBUG_MODE_ENABLED);
+        } else {
+            InternalLoggerFactory.setDefaultFactory(JdkLoggerFactory.INSTANCE);
+        }
 
         BeanManager beanManager = BeanManager.getInstance();
         beanManager.init();

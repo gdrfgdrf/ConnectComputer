@@ -1,5 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Parser
 
+import cn.gdrfgdrf.ConnectComputerComputer.Api.Enum.VersionEnum
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.Common.KeyInformation
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.ParseResult
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants
@@ -23,7 +24,7 @@ object GetPublicKeyParser : BaseParser<ParseResult>() {
             GlobalConfiguration.SERVER_PUBLIC_KEY = publicKey
 
             Constants.VERSION_ENCRYPTED = RSAUtils.publicEncrypt(
-                Constants.VERSION,
+                VersionEnum.CURRENT.name,
                 GlobalConfiguration.SERVER_PUBLIC_KEY
             ).toString()
         }

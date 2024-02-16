@@ -9,6 +9,9 @@ import java.security.PublicKey
  * @author gdrfgdrf
  */
 object GlobalConfiguration {
+    @kotlin.jvm.JvmField
+    var DEBUG = false
+
     lateinit var SERVER_PUBLIC_KEY: PublicKey
 
     @JvmField

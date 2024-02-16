@@ -85,7 +85,8 @@ ConnectComputer | Computer
 | password   | String  | 无     | 登录服务器时使用的密码                             |
 | autoLogin  | Boolean | 无     | 自动登录（存储账号密码）                            |
 | controller | Boolean | 无     | true 则作为控制端，false 则作为被控端                |
-| silent     | Boolean | false | 是否启用静默模式，默认关闭，若启用则会在发送 Http 登录请求失败时一直尝试 |
+| silent     | Boolean | false | 是否启用静默模式，默认关闭，若启用则会在发送部分 Http 请求失败时一直尝试 |
+| debug      | Boolean | false | Debug 模式                                |
 
 ### 例子
     java --add-opens=java.base/java.lang=ALL-UNNAMED -jar ConnectComputerComputer.jar ssl=true serverIp=1.2.3.4 port=1234 username=Hello password=Password123456 autoLogin=true controller=true

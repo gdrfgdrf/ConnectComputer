@@ -19,6 +19,7 @@ package cn.gdrfgdrf.ConnectComputerComputer.Language.Loader;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Config;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
+import cn.gdrfgdrf.ConnectComputerComputer.Global.GlobalConfiguration;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.AppLocale;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.Base.Language;
 import cn.gdrfgdrf.ConnectComputerComputer.Language.Impl.ChineseSimplified;
@@ -50,7 +51,7 @@ public class LocaleLoader implements Bean {
     public void loadLocale(Config config) throws Exception {
         File defaultLanguageFile = new File("ChineseSimplified.json");
 
-        if (Constants.DEBUG) {
+        if (GlobalConfiguration.DEBUG) {
             if (defaultLanguageFile.exists()) {
                 defaultLanguageFile.delete();
             }

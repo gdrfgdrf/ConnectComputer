@@ -46,6 +46,7 @@ public class TryLoginingStep implements Step {
             return;
         }
 
+        log.info(AppLocale.TRY_LOGINING);
         ParseResult parseResult = (ParseResult) HttpNetworkRequest.INSTANCE.request(
                 HttpSiteEnum.LOGIN,
                 account.getUsername(),

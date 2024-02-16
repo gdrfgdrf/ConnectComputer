@@ -25,3 +25,5 @@ target/
 /core/.gitignore
 /api/.gitignore
 /packer/.gitignore
+/api-runner/
+/plugins/

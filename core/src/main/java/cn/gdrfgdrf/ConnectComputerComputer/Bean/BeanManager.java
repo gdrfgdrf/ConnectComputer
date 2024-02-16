@@ -17,6 +17,8 @@
 
 package cn.gdrfgdrf.ConnectComputerComputer.Bean;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Api.Loader.PluginLoader;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.Manager.PluginValidatorManager;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentAssignor.Manager.ArgumentAssignorManager;
 import cn.gdrfgdrf.ConnectComputerComputer.ArgumentValidator.Manager.ArgumentValidatorManager;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.HTTP.Result.Information.InformationCollection;
@@ -62,7 +64,10 @@ import java.util.*;
                 PacketHandlerManager.class,
                 NettyCallbackManager.class,
 
-                StepManager.class
+                StepManager.class,
+
+                PluginValidatorManager.class,
+                PluginLoader.class
         }
 )
 public class BeanManager {
@@ -132,6 +137,7 @@ public class BeanManager {
             } catch (Exception e) {
                 e.printStackTrace();
                 log.error("{} error: {}", name, e.getMessage());
+                throw new IllegalStateException("The beans cannot all be loaded");
             }
 
             System.out.println();

@@ -24,6 +24,8 @@ import cn.gdrfgdrf.ConnectComputerComputer.Language.Base.Language;
  */
 @SuppressWarnings("unused")
 public class ChineseSimplified extends Language {
+    public static final String DEBUG_MODE_ENABLED = "Debug 模式已启用";
+
     public static final String INPUT_SERVER_INFO_ARGUMENT_PASS_THE_DATASTORE_SERVER_INFO_ARGUMENT = "您在启动参数中输入了服务器信息，程序将不会使用本地存储的服务器信息";
     public static final String INPUT_ACCOUNT_ARGUMENT_PASS_THE_DATASTORE_ACCOUNT_ARGUMENT = "您在启动参数中输入了账号，程序将不会使用本地存储的账号";
     public static final String SILENT_MODE_ENABLED = "静默模式已开启";
@@ -67,8 +69,6 @@ public class ChineseSimplified extends Language {
     public static final String LOGIN_ACCOUNT = "登录账户：{}";
 
     public static final String WANT_TO_ENABLE_AUTO_LOGIN = "是否开启自动登录：开启 为 1，关闭 为 2";
-    public static final String ENABLED_AUTO_LOGIN = "自动登录已开启";
-    public static final String DISABLED_AUTO_LOGIN = "自动登录已关闭";
 
     public static final String CONTROLLER_OR_BE_CONTROLLED = "作为 控制端 还是 被控制端：控制端 为 1，被控制端 为 2";
     public static final String BE_CONTROLLER = "该设备将作为 控制端";
@@ -108,7 +108,6 @@ public class ChineseSimplified extends Language {
     public static final String INTEGER_POSITIVE_ERROR = "必须是正数";
 
     public static final String ENTER_ERROR = "输入错误，请重新输入";
-    public static final String ENTER_AGAIN = "请重新输入";
 
     public static final String CONNECT_FAILED_ERROR = "无法连接到服务器";
     public static final String SERVER_SSL_ERROR = "服务器 SSL 错误，请确认并重新输入服务器地址";
@@ -129,4 +128,6 @@ public class ChineseSimplified extends Language {
     public static final String NOT_NULL = "参数不能为空";
 
     public static final String NETTY_AES_KEY_EXCHANGED = "AES 密钥交换成功";
+
+    public static final String PLUGIN_LOAD_ERROR = "插件加载错误";
 }

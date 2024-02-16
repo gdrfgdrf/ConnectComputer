@@ -15,26 +15,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Handler;
+package cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Handler;
 
-import cn.gdrfgdrf.ConnectComputerComputer.Api.Enum.VersionEnum;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import cn.gdrfgdrf.Protobuf.BaseProto;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageEncoder;
-
-import java.util.List;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.Exception.PluginLoadException;
+import cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Annotation.ExceptionHandlerInfo;
+import cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Base.Handler.ExceptionHandler;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author gdrfgdrf
  */
-public class ClientVersionHandler extends MessageToMessageEncoder<BaseProto.Packet> {
+@ExceptionHandlerInfo(
+        classes = {
+                PluginLoadException.class
+        }
+)
+@Slf4j
+public class PluginLoadExceptionHandler implements ExceptionHandler {
     @Override
-    protected void encode(ChannelHandlerContext ctx, BaseProto.Packet packet, List<Object> out) throws Exception {
-        out.add(
-                packet.toBuilder()
-                        .setClientVersion(VersionEnum.CURRENT.name())
-                        .build()
-        );
+    public void handle(Throwable e, Object args) {
+        e.printStackTrace();
+
+        PluginLoadException exception = (PluginLoadException) e;
+        log.error(exception.getErrorMessage());
     }
 }

@@ -40,12 +40,6 @@
       <artifactId>core</artifactId>
       <version>1.1.0.20240215</version>
     </dependency>
-
-    <dependency>
-      <groupId>cn.gdrfgdrf.ConnectComputer</groupId>
-      <artifactId>api</artifactId>
-      <version>1.1.0.20240215</version>
-    </dependency>
   </dependencies>
 
   <build>

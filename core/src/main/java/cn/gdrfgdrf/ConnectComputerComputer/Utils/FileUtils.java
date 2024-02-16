@@ -26,6 +26,15 @@ import java.nio.charset.StandardCharsets;
 public class FileUtils {
     private FileUtils() {}
 
+    public static String getExtension(File file) {
+        if (!file.isFile()) {
+            return null;
+        }
+        return file.getName().substring(
+                file.getName().lastIndexOf(".")
+        );
+    }
+
     public static Reader getReader(File file) throws IOException {
         return new BufferedReader(
                 new InputStreamReader(

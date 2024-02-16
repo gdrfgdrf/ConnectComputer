@@ -17,6 +17,7 @@
 
 package cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Manager;
 
+import cn.gdrfgdrf.ConnectComputerComputer.Api.Exception.PluginLoadException;
 import cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Annotation.ExceptionHandlerClass;
 import cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Annotation.ExceptionPostProcessorClass;
 import cn.gdrfgdrf.ConnectComputerComputer.ExceptionHandler.Handler.*;
@@ -40,7 +41,9 @@ import cn.gdrfgdrf.ConnectComputerComputer.Bean.Bean;
                 SSLExceptionHandler.class,
 
                 SocketExceptionHandler.class,
-                NotFoundPacketHandlerExceptionHandler.class
+                NotFoundPacketHandlerExceptionHandler.class,
+
+                PluginLoadExceptionHandler.class
         }
 )
 public class ExceptionManager extends AbstractExceptionManager implements Bean {

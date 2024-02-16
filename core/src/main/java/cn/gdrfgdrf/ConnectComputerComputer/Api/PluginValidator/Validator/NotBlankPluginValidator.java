@@ -15,26 +15,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Handler;
+package cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.Validator;
 
-import cn.gdrfgdrf.ConnectComputerComputer.Api.Enum.VersionEnum;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import cn.gdrfgdrf.Protobuf.BaseProto;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageEncoder;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.Annotation.NotBlank;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.PluginValidator;
+import cn.gdrfgdrf.ConnectComputerComputer.Utils.StringUtils;
 
-import java.util.List;
+import java.lang.annotation.Annotation;
 
 /**
  * @author gdrfgdrf
  */
-public class ClientVersionHandler extends MessageToMessageEncoder<BaseProto.Packet> {
+public class NotBlankPluginValidator implements PluginValidator<String> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, BaseProto.Packet packet, List<Object> out) throws Exception {
-        out.add(
-                packet.toBuilder()
-                        .setClientVersion(VersionEnum.CURRENT.name())
-                        .build()
-        );
+    public void validate(String s, String fieldName) {
+        if (StringUtils.isBlank(s)) {
+            throw new IllegalArgumentException(fieldName + " is blank");
+        }
+    }
+
+    @Override
+    public Class<? extends Annotation> getAnnotation() {
+        return NotBlank.class;
     }
 }

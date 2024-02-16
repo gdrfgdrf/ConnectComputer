@@ -90,16 +90,17 @@ Parameter
 -------------------------
 The parameters are verified at run time.
 
-| Parameter  | Type    | Default | Description                                                                                                                                                            |
-|------------|---------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ssl        | Boolean | None    | Whether the server uses SSL                                                                                                                                            |
-| serverIp   | String  | None    | Server address                                                                                                                                                         |
-| port       | Integer | None    | Server port（0 - 65535）                                                                                                                                                 |
-| username   | String  | None    | Username used to log in to the server                                                                                                                                  |
-| password   | String  | None    | Password for logging in to the server                                                                                                                                  |
-| autoLogin  | Boolean | None    | Auto login（Storage account and password）                                                                                                                               |
-| controller | Boolean | None    | true is used as the controller, false is used as the remote device                                                                                                     |
-| silent     | Boolean | false   | Whether to enable the silent mode. This mode is disabled by default. If this mode is enabled, Http login requests are repeatedly sent until they are successfully sent |
+| Parameter  | Type    | Default | Description                                                                                                                                                           |
+|------------|---------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ssl        | Boolean | None    | Whether the server uses SSL                                                                                                                                           |
+| serverIp   | String  | None    | Server address                                                                                                                                                        |
+| port       | Integer | None    | Server port（0 - 65535）                                                                                                                                                |
+| username   | String  | None    | Username used to log in to the server                                                                                                                                 |
+| password   | String  | None    | Password for logging in to the server                                                                                                                                 |
+| autoLogin  | Boolean | None    | Auto login（Storage account and password）                                                                                                                              |
+| controller | Boolean | None    | true is used as the controller, false is used as the remote device                                                                                                    |
+| silent     | Boolean | false   | Whether to enable the silent mode. This mode is disabled by default. If this mode is enabled, some http requests are repeatedly sent until they are successfully sent |
+| debug      | Boolean | false   | Debug mode                                                                                                                                                            |
 
 ### Example
     java --add-opens=java.base/java.lang=ALL-UNNAMED -jar ConnectComputerComputer.jar ssl=true serverIp=1.2.3.4 port=1234 username=Hello password=Password123456 autoLogin=true controller=true

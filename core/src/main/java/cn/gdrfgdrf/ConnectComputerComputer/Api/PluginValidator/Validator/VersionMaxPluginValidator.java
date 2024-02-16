@@ -15,26 +15,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Handler;
+package cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.Validator;
 
 import cn.gdrfgdrf.ConnectComputerComputer.Api.Enum.VersionEnum;
-import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import cn.gdrfgdrf.Protobuf.BaseProto;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageEncoder;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.Annotation.VersionMax;
+import cn.gdrfgdrf.ConnectComputerComputer.Api.PluginValidator.PluginValidator;
 
-import java.util.List;
+import java.lang.annotation.Annotation;
 
 /**
  * @author gdrfgdrf
  */
-public class ClientVersionHandler extends MessageToMessageEncoder<BaseProto.Packet> {
+public class VersionMaxPluginValidator implements PluginValidator<String> {
     @Override
-    protected void encode(ChannelHandlerContext ctx, BaseProto.Packet packet, List<Object> out) throws Exception {
-        out.add(
-                packet.toBuilder()
-                        .setClientVersion(VersionEnum.CURRENT.name())
-                        .build()
-        );
+    public void validate(String obj, String fieldName) {
+        VersionEnum pluginVersionEnum = VersionEnum.valueOf(obj);
+        if (!VersionEnum.compare(VersionEnum.CURRENT, pluginVersionEnum)) {
+            throw new IllegalArgumentException(pluginVersionEnum + " is bigger than " + VersionEnum.CURRENT);
+        }
+    }
+
+    @Override
+    public Class<? extends Annotation> getAnnotation() {
+        return VersionMax.class;
     }
 }

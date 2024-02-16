@@ -23,6 +23,8 @@ import cn.gdrfgdrf.ConnectComputerComputer.Language.Base.Locale;
  * @author gdrfgdrf
  */
 public class AppLocale extends Locale {
+    public static String DEBUG_MODE_ENABLED;
+
     public static String INPUT_SERVER_INFO_ARGUMENT_PASS_THE_DATASTORE_SERVER_INFO_ARGUMENT;
     public static String INPUT_ACCOUNT_ARGUMENT_PASS_THE_DATASTORE_ACCOUNT_ARGUMENT;
     public static String SILENT_MODE_ENABLED;
@@ -66,8 +68,6 @@ public class AppLocale extends Locale {
     public static String LOGIN_ACCOUNT;
 
     public static String WANT_TO_ENABLE_AUTO_LOGIN;
-    public static String ENABLED_AUTO_LOGIN;
-    public static String DISABLED_AUTO_LOGIN;
 
     public static String CONTROLLER_OR_BE_CONTROLLED;
     public static String BE_CONTROLLER;
@@ -107,7 +107,6 @@ public class AppLocale extends Locale {
     public static String INTEGER_POSITIVE_ERROR;
 
     public static String ENTER_ERROR;
-    public static String ENTER_AGAIN;
 
     public static String CONNECT_FAILED_ERROR;
     public static String SERVER_SSL_ERROR;
@@ -128,4 +127,6 @@ public class AppLocale extends Locale {
     public static String NOT_NULL;
 
     public static String NETTY_AES_KEY_EXCHANGED;
+
+    public static String PLUGIN_LOAD_ERROR;
 }
