@@ -9,6 +9,7 @@ import java.util.List;
 
 public enum VersionEnum {
     v1_0_0,
+    v1_2_0_20240217
     ;
 
     private static List<VersionEnum> versions;

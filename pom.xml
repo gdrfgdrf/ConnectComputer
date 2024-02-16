@@ -6,7 +6,7 @@
 
   <groupId>cn.gdrfgdrf.connectComputer</groupId>
   <artifactId>ConnectComputerServer</artifactId>
-  <version>1.0</version>
+  <version>1.0.1.20240217</version>
   <packaging>jar</packaging>
 
   <parent>
