@@ -10,7 +10,7 @@ import cn.gdrfgdrf.ConnectComputerServer.Netty.Common.Writer;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.Initializer.ServerInitializer;
 import cn.gdrfgdrf.Protobuf.Connection.Goodbye.GoodbyeProto;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -42,7 +42,7 @@ public class NettyServer {
     public static int PORT;
     public static int SO_BACK_LOG;
 
-    public final Map<Class<? extends GeneratedMessageV3>, PacketHandler> HANDLER = new HashMap<>();
+    public final Map<Class<? extends GeneratedMessage>, PacketHandler> HANDLER = new HashMap<>();
 
     private final Map<Channel, AesKey> ALL_AES_KEY = new ConcurrentHashMap<>();
 

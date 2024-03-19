@@ -70,7 +70,7 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>3.19.6</version>
+      <version>4.26.0</version>
     </dependency>
 
     <dependency>
@@ -158,9 +158,9 @@
         <artifactId>protobuf-maven-plugin</artifactId>
         <version>0.6.1</version>
         <configuration>
-          <outputDirectory>C:\Users\gdrfgdrf\IdeaProjects\ConnectComputer_Server\src\main\java</outputDirectory>
+          <outputDirectory>src\main\java</outputDirectory>
           <clearOutputDirectory>false</clearOutputDirectory>
-          <protocExecutable>C:\Program Files\Protobuf\bin\protoc.exe</protocExecutable>
+          <protocExecutable>F:\Protobuf\bin\protoc.exe</protocExecutable>
         </configuration>
 
         <executions>

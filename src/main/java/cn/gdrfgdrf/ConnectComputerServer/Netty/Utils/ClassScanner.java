@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerServer.Netty.Utils;
 
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import org.reflections.Reflections;
 
 import java.util.HashSet;
@@ -11,9 +11,9 @@ import java.util.Set;
  */
 public class ClassScanner {
     private static final Reflections DEFAULT_REFLECTIONS = new Reflections("cn.gdrfgdrf.Protobuf");
-    private static final Set<Class<? extends GeneratedMessageV3>> DEFAULT_CLASSES_SET = new HashSet<>();
+    private static final Set<Class<? extends GeneratedMessage>> DEFAULT_CLASSES_SET = new HashSet<>();
 
-    public static Set<Class<? extends GeneratedMessageV3>> lookupClasses(Class<GeneratedMessageV3> subType) {
+    public static Set<Class<? extends GeneratedMessage>> lookupClasses(Class<GeneratedMessage> subType) {
         if (DEFAULT_CLASSES_SET.isEmpty()) {
             DEFAULT_CLASSES_SET.addAll(DEFAULT_REFLECTIONS.getSubTypesOf(subType));
         }

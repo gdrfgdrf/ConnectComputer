@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerServer.Netty.Utils;
 
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 
 import java.lang.reflect.InvocationTargetException;
@@ -11,27 +11,27 @@ import java.util.Set;
  */
 public class MessageTypeLookupUtils {
     public static MessageTypeLookup getMessageTypeLookup() {
-        Set<Class<? extends GeneratedMessageV3>>
-                classes = ClassScanner.lookupClasses(GeneratedMessageV3.class);
+        Set<Class<? extends GeneratedMessage>>
+                classes = ClassScanner.lookupClasses(GeneratedMessage.class);
         return generateMessageTypeLookup(classes);
     }
 
     public static MessageTypeLookup getMessageTypeLookup(String... messageBasePackages) {
-        Set<Class<? extends GeneratedMessageV3>>
-                classes = ClassScanner.lookupClasses(GeneratedMessageV3.class, messageBasePackages);
+        Set<Class<? extends GeneratedMessage>>
+                classes = ClassScanner.lookupClasses(GeneratedMessage.class, messageBasePackages);
         return generateMessageTypeLookup(classes);
     }
 
     public static MessageTypeLookup getMessageTypeLookup(Class<?>... messageBasePackageClasses) {
-        Set<Class<? extends GeneratedMessageV3>>
-                classes = ClassScanner.lookupClasses(GeneratedMessageV3.class, messageBasePackageClasses);
+        Set<Class<? extends GeneratedMessage>>
+                classes = ClassScanner.lookupClasses(GeneratedMessage.class, messageBasePackageClasses);
         return generateMessageTypeLookup(classes);
     }
 
-    private static MessageTypeLookup generateMessageTypeLookup(Set<Class<? extends GeneratedMessageV3>> classes) {
+    private static MessageTypeLookup generateMessageTypeLookup(Set<Class<? extends GeneratedMessage>> classes) {
         MessageTypeLookup.Builder messageTypeLookupBuilder = MessageTypeLookup.newBuilder();
         try {
-            for (Class<? extends GeneratedMessageV3> clazz : classes) {
+            for (Class<? extends GeneratedMessage> clazz : classes) {
                 Message.Builder builder = (Message.Builder) clazz.getMethod("newBuilder").invoke(null);
                 Message messageV3 = builder.build();
                 messageTypeLookupBuilder.addMessageTypeMapping(messageV3.getDescriptorForType(), clazz);

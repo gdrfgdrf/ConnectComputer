@@ -8,7 +8,7 @@ import cn.gdrfgdrf.Protobuf.Connection.Heart.HeartProto;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.Utils.AnyPacketPacker;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultCode;
 import cn.gdrfgdrf.ConnectComputerServer.Result.ResultEnum;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import org.slf4j.helpers.MessageFormatter;
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  * @author gdrfgdrf
  */
 public class Writer {
-    public static ChannelFuture error(Channel channel, GeneratedMessageV3 msg, String requestId) {
+    public static ChannelFuture error(Channel channel, GeneratedMessage msg, String requestId) {
         return write(channel, msg, requestId, ResultEnum.ERROR);
     }
 
@@ -47,17 +47,17 @@ public class Writer {
 
     public static ChannelFuture write(
             Channel channel,
-            Class<? extends GeneratedMessageV3> msg,
+            Class<? extends GeneratedMessage> msg,
             String requestId,
             ResultEnum resultEnum,
             Object... placeholders
     ) {
-        GeneratedMessageV3 packet;
+        GeneratedMessage packet;
 
         try {
             Method newBuilder = msg.getMethod("newBuilder");
-            GeneratedMessageV3.Builder<?> builder = (GeneratedMessageV3.Builder<?>) newBuilder.invoke(null);
-            packet = (GeneratedMessageV3) builder.build();
+            GeneratedMessage.Builder<?> builder = (GeneratedMessage.Builder<?>) newBuilder.invoke(null);
+            packet = (GeneratedMessage) builder.build();
         } catch (Exception e) {
             e.printStackTrace();
             packet = InternalErrorProto.ErrorPacket.newBuilder().build();
@@ -68,7 +68,7 @@ public class Writer {
 
     public static ChannelFuture write(
             Channel channel,
-            GeneratedMessageV3 msg,
+            GeneratedMessage msg,
             String requestId,
             ResultEnum resultEnum,
             Object... placeholders
@@ -111,7 +111,7 @@ public class Writer {
         return channel.writeAndFlush(msg);
     }
 
-    private static BaseProto.Packet getBasePacket(GeneratedMessageV3 data) {
+    private static BaseProto.Packet getBasePacket(GeneratedMessage data) {
         AnyPacketProto.AnyPacket anyPacket = AnyPacketPacker.pack(data);
         BaseProto.Packet.Builder builder = BaseProto.Packet.newBuilder()
                 .setData(anyPacket);

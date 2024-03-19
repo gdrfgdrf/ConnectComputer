@@ -1,6 +1,6 @@
 package cn.gdrfgdrf.ConnectComputerServer.Netty.Annotation;
 
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,5 +13,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Handler {
-    Class<? extends GeneratedMessageV3> support();
+    Class<? extends GeneratedMessage> support();
 }

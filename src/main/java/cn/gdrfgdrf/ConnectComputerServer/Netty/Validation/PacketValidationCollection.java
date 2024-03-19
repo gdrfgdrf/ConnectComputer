@@ -4,7 +4,7 @@ import cn.gdrfgdrf.Protobuf.Action.Account.AccountProto;
 import cn.gdrfgdrf.Protobuf.Action.Computer.ComputerProto;
 import cn.gdrfgdrf.ConnectComputerServer.Netty.Validation.Enum.ValidationEnum;
 import cn.gdrfgdrf.Protobuf.Action.Controller.ControllerProto;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,13 +19,13 @@ import java.util.Map;
 public enum PacketValidationCollection {
     INSTANCE;
 
-    private final Map<Class<? extends GeneratedMessageV3>, PacketValidation> MAP = new HashMap<>();
+    private final Map<Class<? extends GeneratedMessage>, PacketValidation> MAP = new HashMap<>();
 
     public PacketValidation getPacketValidation(Class<? extends Message> clazz) {
         return MAP.get(clazz);
     }
 
-    private Method getMethod(Class<? extends GeneratedMessageV3> clazz, String methodName) {
+    private Method getMethod(Class<? extends GeneratedMessage> clazz, String methodName) {
         try {
             return clazz.getMethod(methodName);
         } catch (Exception e) {
