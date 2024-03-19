@@ -18,7 +18,7 @@
 package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.PacketPoster;
 
 import cn.gdrfgdrf.Protobuf.BaseProto;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 
 import java.util.HashMap;
@@ -36,8 +36,8 @@ public enum PacketPoster {
     private final Map<Class<? extends Message>, List<PacketReceiver>> RECEIVER_MAP = new HashMap<>();
 
     public void registerPacketReceiver(PacketReceiver packetReceiver) {
-        Class<? extends GeneratedMessageV3>[] types = packetReceiver.type();
-        for (Class<? extends GeneratedMessageV3> clazz : types) {
+        Class<? extends GeneratedMessage>[] types = packetReceiver.type();
+        for (Class<? extends GeneratedMessage> clazz : types) {
             RECEIVER_MAP.computeIfAbsent(clazz, k -> new LinkedList<>());
             List<PacketReceiver> packetReceivers = RECEIVER_MAP.get(clazz);
             packetReceivers.add(packetReceiver);
@@ -45,8 +45,8 @@ public enum PacketPoster {
     }
 
     public void unregisterPacketReceiver(PacketReceiver packetReceiver) {
-        Class<? extends GeneratedMessageV3>[] types = packetReceiver.type();
-        for (Class<? extends GeneratedMessageV3> clazz : types) {
+        Class<? extends GeneratedMessage>[] types = packetReceiver.type();
+        for (Class<? extends GeneratedMessage> clazz : types) {
             if (!RECEIVER_MAP.containsKey(clazz)) {
                 continue;
             }

@@ -19,11 +19,14 @@ package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.SyncPacketPoster
 
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.Synchronization.SyncFuture;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
+import cn.gdrfgdrf.Protobuf.Action.Computer.ComputerProto;
 import cn.gdrfgdrf.Protobuf.BaseProto;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +44,7 @@ public enum SyncPacketPoster {
 
     private final Map<Class<? extends Message>, List<SyncFuture<Pair<BaseProto.Packet, Message>>>> MAP = new ConcurrentHashMap<>();
 
-    public Pair<BaseProto.Packet, Message> waitPacket(Class<? extends GeneratedMessageV3> type)
+    public Pair<BaseProto.Packet, Message> waitPacket(Class<? extends GeneratedMessage> type)
             throws ExecutionException, InterruptedException {
         SyncFuture<Pair<BaseProto.Packet, Message>> syncFuture = new SyncFuture<>();
         MAP.computeIfAbsent(type, k -> new CopyOnWriteArrayList<>());

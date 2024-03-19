@@ -19,7 +19,7 @@ package cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.PacketHandler.Annotatio
 
 import java.lang.annotation.*;
 
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 
 /**
  * @author gdrfgdrf
@@ -27,5 +27,5 @@ import com.google.protobuf.GeneratedMessageV3;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PacketHandler {
-    Class<? extends GeneratedMessageV3>[] support();
+    Class<? extends GeneratedMessage>[] support();
 }

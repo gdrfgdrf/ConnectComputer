@@ -84,22 +84,46 @@
       <version>0.12.13</version>
     </dependency>
 
+    <!--
+    mvn install:install-file
+        -Dfile=F:\IdeaProjects\ConnectComputer\core\libs\JediTerm-3.41-SNAPSHOT.jar
+        -DgroupId=com.jediterm
+        -DartifactId=core
+        -Dversion=3.41-SNAPSHOT
+        -Dpackaging=Jar
+    -->
     <dependency>
       <groupId>com.jediterm</groupId>
       <artifactId>core</artifactId>
-      <version>3.40-SNAPSHOT</version>
+      <version>3.41-SNAPSHOT</version>
     </dependency>
 
+    <!--
+    mvn install:install-file
+        -Dfile=F:\IdeaProjects\ConnectComputer\core\libs\jediterm-ui-3.41-SNAPSHOT.jar
+        -DgroupId=com.jediterm
+        -DartifactId=ui
+        -Dversion=3.41-SNAPSHOT
+        -Dpackaging=Jar
+    -->
     <dependency>
       <groupId>com.jediterm</groupId>
       <artifactId>ui</artifactId>
-      <version>3.40-SNAPSHOT</version>
+      <version>3.41-SNAPSHOT</version>
     </dependency>
 
+    <!--
+    mvn install:install-file
+        -Dfile=F:\IdeaProjects\ConnectComputer\core\libs\JediTerm-3.41-SNAPSHOT.jar
+        -DgroupId=com.jediterm
+        -DartifactId=jediterm
+        -Dversion=3.41-SNAPSHOT
+        -Dpackaging=Jar
+    -->
     <dependency>
       <groupId>com.jediterm</groupId>
       <artifactId>jediterm</artifactId>
-      <version>3.40-SNAPSHOT</version>
+      <version>3.41-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -130,7 +154,7 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>3.19.6</version>
+      <version>4.26.0</version>
     </dependency>
 
     <dependency>
@@ -189,7 +213,7 @@
         <configuration>
           <outputDirectory>src/main/java</outputDirectory>
           <clearOutputDirectory>false</clearOutputDirectory>
-          <protocExecutable>C:\Program Files\Protobuf\bin\protoc.exe</protocExecutable>
+          <protocExecutable>F:\Protobuf\bin\protoc.exe</protocExecutable>
         </configuration>
         <executions>
           <execution>

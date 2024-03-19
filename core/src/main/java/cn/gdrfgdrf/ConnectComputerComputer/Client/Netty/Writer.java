@@ -24,7 +24,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.Synchronization.S
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Poster.SyncResponsePacketPoster.SyncResponsePacketPoster;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Utils.AnyPacketPacker;
 import cn.gdrfgdrf.ConnectComputerComputer.Global.Constants;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -44,11 +44,11 @@ public class Writer {
         return channel.writeAndFlush(msg);
     }
 
-    public static ChannelFuture write(Channel channel, GeneratedMessageV3 msg, String requestId) {
+    public static ChannelFuture write(Channel channel, GeneratedMessage msg, String requestId) {
         return write(channel, msg, requestId, null);
     }
 
-    public static ChannelFuture write(Channel channel, GeneratedMessageV3 msg, String requestId, ResultEnum resultEnum) {
+    public static ChannelFuture write(Channel channel, GeneratedMessage msg, String requestId, ResultEnum resultEnum) {
         try {
             if (requestId == null) {
                 requestId = RandomStringUtils.randomAlphabetic(16);
@@ -62,7 +62,7 @@ public class Writer {
 
     public static Pair<BaseProto.Packet, Message> writeSynchronously(
             Channel channel,
-            GeneratedMessageV3 msg,
+            GeneratedMessage msg,
             SyncFuture<Pair<BaseProto.Packet, Message>> syncFuture,
             String requestId,
             ResultEnum resultEnum,
@@ -82,7 +82,7 @@ public class Writer {
         return syncFuture.get();
     };
 
-    private static BaseProto.Packet getBasePacket(GeneratedMessageV3 data, String requestId, ResultEnum resultEnum) {
+    private static BaseProto.Packet getBasePacket(GeneratedMessage data, String requestId, ResultEnum resultEnum) {
         AnyPacketProto.AnyPacket anyPacket = AnyPacketPacker.pack(data);
         BaseProto.Packet.Builder builder = BaseProto.Packet.newBuilder()
                 .setRequestId(requestId)

@@ -24,7 +24,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.Base.BasePacketHandler;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.PacketHandler.Annotation.PacketHandler;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.PacketHandler.Annotation.PacketHandlerClass;
 import cn.gdrfgdrf.ConnectComputerComputer.Client.Netty.NettyClient;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -59,7 +59,7 @@ public abstract class AbstractPacketHandlerManager {
             return;
         }
 
-        Class<? extends GeneratedMessageV3>[] supports = packetHandler.support();
+        Class<? extends GeneratedMessage>[] supports = packetHandler.support();
         try {
             Class<? extends BasePacketHandler> handlerClazz = clazz.asSubclass(BasePacketHandler.class);
             BasePacketHandler instance;
@@ -71,7 +71,7 @@ public abstract class AbstractPacketHandlerManager {
                 INSTANCE_MAP.put(handlerClazz, instance);
             }
 
-            for (Class<? extends GeneratedMessageV3> support : supports) {
+            for (Class<? extends GeneratedMessage> support : supports) {
                 NettyClient.INSTANCE.getHandlerMap().put(support, instance);
 
                 log.info(

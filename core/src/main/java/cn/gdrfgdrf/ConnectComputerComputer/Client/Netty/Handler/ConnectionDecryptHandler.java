@@ -27,7 +27,7 @@ import cn.gdrfgdrf.Protobuf.Action.Controller.Security.ControllerSecurityProto;
 import cn.gdrfgdrf.Protobuf.BaseProto;
 import cn.gdrfgdrf.Protobuf.Security.SecurityEnumProto;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;

@@ -43,7 +43,7 @@ import cn.gdrfgdrf.Protobuf.Common.AnyPacketProto;
 import cn.gdrfgdrf.Protobuf.Common.EnumProto;
 import cn.gdrfgdrf.Protobuf.Security.SecurityEnumProto;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -236,7 +236,7 @@ public class ComputerControlMenu extends Menu {
     };
     private final PacketReceiver packetReceiver = new PacketReceiver() {
         @Override
-        public Class<? extends GeneratedMessageV3>[] type() {
+        public Class<? extends GeneratedMessage>[] type() {
             return new Class[]{
                     ComputerProto.ComputerDisconnectedPacket.class,
                     ComputerProto.TerminalClosedPacket.class

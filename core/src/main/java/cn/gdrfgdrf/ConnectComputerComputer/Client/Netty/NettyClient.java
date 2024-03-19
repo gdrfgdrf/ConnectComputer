@@ -31,7 +31,7 @@ import cn.gdrfgdrf.ConnectComputerComputer.NettyCallback.NettyCallbackCollection
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.NetworkUtils;
 import cn.gdrfgdrf.ConnectComputerComputer.Utils.StringUtils;
 import cn.gdrfgdrf.Protobuf.Security.SecurityProto;
-import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -62,7 +62,7 @@ public enum NettyClient {
     private ServerInfo serverInfo;
 
     @Getter
-    private final Map<Class<? extends GeneratedMessageV3>, BasePacketHandler> handlerMap = new HashMap<>();
+    private final Map<Class<? extends GeneratedMessage>, BasePacketHandler> handlerMap = new HashMap<>();
 
     private final Bootstrap bootstrap;
     private EventLoopGroup group;
@@ -185,41 +185,41 @@ public enum NettyClient {
         }
 
         public void send(
-                GeneratedMessageV3 generatedMessageV3
+                GeneratedMessage GeneratedMessage
         ) throws ExecutionException, InterruptedException, TimeoutException {
-            doSend(generatedMessageV3, null, false, null, null);
+            doSend(GeneratedMessage, null, false, null, null);
         }
 
         public void send(
-                GeneratedMessageV3 generatedMessageV3,
+                GeneratedMessage GeneratedMessage,
                 String requestId
         ) throws ExecutionException, InterruptedException, TimeoutException {
-            doSend(generatedMessageV3, requestId, false, null, null);
+            doSend(GeneratedMessage, requestId, false, null, null);
         }
 
         public void send(
-                GeneratedMessageV3 generatedMessageV3,
+                GeneratedMessage GeneratedMessage,
                 String requestId,
                 ResultEnum resultEnum
         ) throws ExecutionException, InterruptedException, TimeoutException {
-            doSend(generatedMessageV3, requestId, false, resultEnum, null);
+            doSend(GeneratedMessage, requestId, false, resultEnum, null);
         }
 
         public Pair<BaseProto.Packet, Message> sendSynchronously(
-                GeneratedMessageV3 generatedMessageV3
+                GeneratedMessage GeneratedMessage
         ) throws ExecutionException, InterruptedException, TimeoutException {
-            return sendSynchronously(generatedMessageV3, null);
+            return sendSynchronously(GeneratedMessage, null);
         }
 
         public Pair<BaseProto.Packet, Message> sendSynchronously(
-                GeneratedMessageV3 generatedMessageV3,
+                GeneratedMessage GeneratedMessage,
                 ChannelFutureListener channelFutureListener
         ) throws ExecutionException, InterruptedException, TimeoutException {
-            return doSend(generatedMessageV3, null, true, null, channelFutureListener);
+            return doSend(GeneratedMessage, null, true, null, channelFutureListener);
         }
 
         private Pair<BaseProto.Packet, Message> doSend(
-                GeneratedMessageV3 generatedMessageV3,
+                GeneratedMessage GeneratedMessage,
                 String requestId,
                 boolean sync,
                 ResultEnum resultEnum,
@@ -228,12 +228,12 @@ public enum NettyClient {
             if (!waitChannel(0)) {
                 return null;
             };
-            if (generatedMessageV3.getClass() != SecurityProto.ExchangeRsaPublicKeyPacket.class &&
+            if (GeneratedMessage.getClass() != SecurityProto.ExchangeRsaPublicKeyPacket.class &&
                     !waitAesKey()) {
                 return null;
             }
             if (!sync) {
-                ChannelFuture channelFuture = Writer.write(channel, generatedMessageV3, requestId, resultEnum);
+                ChannelFuture channelFuture = Writer.write(channel, GeneratedMessage, requestId, resultEnum);
                 if (channelFutureListener != null) {
                     channelFuture.addListener(channelFutureListener);
                 }
@@ -241,7 +241,7 @@ public enum NettyClient {
             }
             SyncFuture<Pair<BaseProto.Packet, Message>> syncFuture = new SyncFuture<>();
 
-            return Writer.writeSynchronously(channel, generatedMessageV3, syncFuture, requestId, resultEnum, channelFutureListener);
+            return Writer.writeSynchronously(channel, GeneratedMessage, syncFuture, requestId, resultEnum, channelFutureListener);
         }
     }
 }
